@@ -16,7 +16,7 @@ class CheckoutContainer extends Component<CheckoutProps> {
 
 const mapStateToProps = (rootState: RootState, ownProps) => {
   return {
-      guests: rootState.checkout.guests
+      order: rootState.checkout.order
   };
 };
 
