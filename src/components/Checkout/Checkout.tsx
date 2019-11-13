@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { SFC, useState } from 'react';
 import { Grid, Typography } from '@material-ui/core';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
@@ -39,61 +39,43 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-class Checkout extends Component<CheckoutProps, CheckoutState> {
-  constructor(props:CheckoutProps) {
-    super(props);
+const Checkout: SFC<CheckoutProps> = props => {
+  const classes = useStyles();
 
-    let guests: Array<RoomGuest> = [];
-
-    for(let index:number = 0; index < props.order.product.rooms.quantity; index ++) {
-      guests.push({name:"",
-      lastName: "",
-      email: "",
-      phone: {countryCode:"", areaCode:"", number: ""}
-      });
-    }
-
-    this.state = {guests:guests};
-
-    this.onSubmit.bind(this);
+  const [guests, setGuests] = useState<Array<RoomGuest>>(new Array(props.order.product.rooms.quantity));
+  
+  const onChange = (guest: RoomGuest, index: number): void => {
+    let prevGuests: Array<RoomGuest> = guests;
+    prevGuests[index] = guest;
+    setGuests(prevGuests);
   }
 
-  onChange = (guest: RoomGuest, index: number): void => {
-    this.setState((prevState: CheckoutState) => {
-      let guests: Array<RoomGuest> = prevState.guests;
-      guests[index] = guest;
-      return {guests: guests};
-    }); 
+  const onSubmit = (): void => {
+    console.info(guests);
+    props.onSubmit(guests);
   }
 
-  onSubmit = (): void => {
-    console.info(this.state.guests);
-    this.props.onSubmit(this.state.guests);
-  }
-
-  render = () => {
-    return <Grid container>
-          <Grid container item xs={12}>
-            <Paper>
-              <Typography variant="h1">Checkout</Typography>
-            </Paper>
-          </Grid>
-          <Grid container item  xs={12} md={6} lg={8}>
-           <Rooms quantity={this.props.order.product.rooms.quantity} onChange={this.onChange}/>
-          </Grid>
-          <Grid container item 
-            xs={12} md={6} lg={4} 
-            direction="column" 
-            justify="flex-start" 
-            alignItems="center">
-              <Pay {...this.props.order.pay}/>
-              <Product {...this.props.order.product}/>
-          </Grid>
-          <Grid item>
-            <Button variant="contained" color="primary" onClick={this.onSubmit}>Continuar</Button>
-          </Grid>
-        </Grid>;
-  }
+  return <Grid container>
+    <Grid container item xs={12}>
+      <Paper>
+        <Typography variant="h1">Checkout</Typography>
+      </Paper>
+    </Grid>
+    <Grid container item  xs={12} md={6} lg={8}>
+      <Rooms quantity={props.order.product.rooms.quantity} onChange={onChange}/>
+    </Grid>
+    <Grid container item 
+      xs={12} md={6} lg={4} 
+      direction="column" 
+      justify="flex-start" 
+      alignItems="center">
+        <Pay {...props.order.pay}/>
+        <Product {...props.order.product}/>
+    </Grid>
+    <Grid item xs={12} className={classes.buttonGrid}>
+      <Button variant="contained" color="primary" onClick={onSubmit}>Continuar</Button>
+    </Grid>
+  </Grid>;
 }
 
 export default Checkout;
