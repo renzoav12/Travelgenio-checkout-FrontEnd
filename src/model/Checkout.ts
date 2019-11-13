@@ -1,4 +1,5 @@
-import { RoomGuest } from "../components/Checkout/Guest/Guest";
+import { RoomGuest } from "../components/Checkout/Rooms/Room/Room";
+import { Order } from "../components/Checkout/Checkout";
 
 export interface CheckoutError {
     exists: boolean;
@@ -8,6 +9,7 @@ export interface CheckoutError {
 
 export interface Checkout {
     guests: Array<RoomGuest>;
+    order: Order;
     loading: boolean;
     error: CheckoutError;
 }

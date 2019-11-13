@@ -8,7 +8,7 @@ import {
 } from './checkout.actionTypes';
 import { RootState } from '../../store';
 import { AxiosResponse } from 'axios';
-import { RoomGuest } from '../../components/Checkout/Guest/Guest';
+import { RoomGuest } from '../../components/Checkout/Rooms/Room/Room';
 import checkout from '../../api/checkout/checkout';
 import { ThunkAction } from 'redux-thunk';
 import { RootAction } from '../action';

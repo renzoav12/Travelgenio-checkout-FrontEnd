@@ -1,5 +1,5 @@
 import { Action } from "redux";
-import { RoomGuest } from "../../components/Checkout/Guest/Guest";
+import { RoomGuest } from "../../components/Checkout/Rooms/Room/Room";
 
 export const GUESTS_SAVE_START = 'GUESTS_SAVE_START'
 export const GUESTS_SAVE_SUCCESS = 'GUESTS_SAVE_SUCCESS'

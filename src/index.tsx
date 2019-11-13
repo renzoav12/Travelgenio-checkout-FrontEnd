@@ -16,7 +16,8 @@ const theme = createMuiTheme({
     },
     background: {
       default: "#ECEEF2"
-    }
+    },
+    divider: "#C0C6D1"
   },
   typography: {
     fontFamily: "Open Sans",
@@ -26,7 +27,7 @@ const theme = createMuiTheme({
       fontWeight: "bold"
     },
     h2: {
-      fontSize: 18,
+      fontSize: 17,
       fontWeight: "bold"
     }
   },

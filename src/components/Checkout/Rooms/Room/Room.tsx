@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-import { Grid, Typography, Paper } from '@material-ui/core';
+import { Grid, Typography } from '@material-ui/core';
 import OtravoTextField from './OtravoTextField';
 import EmailField from './EmailField';
 import NumberField from './NumberField';
 import PhoneNumberField from './PhoneNumberField';
 
 
-export interface GuestProps {
-  roomNumber?: number; 
+export interface RoomProps {
+  roomNumber: number; 
   guest: RoomGuest;
   onChange: (guest: RoomGuest) => void;
 }
@@ -29,7 +29,7 @@ export interface GuestState {
   guest: RoomGuest;
 }
 
-class Guest extends Component<GuestProps, GuestState> {
+class Room extends Component<RoomProps, GuestState> {
   constructor(props) {
     super(props);
     this.state = {
@@ -151,74 +151,72 @@ class Guest extends Component<GuestProps, GuestState> {
   }
 
   render = () => {
-    return <Paper>
-      <Grid container spacing={2}>
-        <Grid item xs={12}>
+    return <Grid container spacing={2}>
+      <Grid item xs={12}>
         <Typography variant="h2">Habitación {this.props.roomNumber}</Typography>
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <OtravoTextField
-            id="name"
-            label="Nombre"
-            value={this.props.guest.name}
-            required={true}
-            onChange={this.onChangeName}
-            maxLength={30}
-          />
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <OtravoTextField
-            id="lastName"
-            label="Apellido"
-            value={this.props.guest.lastName}
-            required={true}
-            onChange={this.onChangeLastName}
-            maxLength={30}
-          />
-        </Grid>
-        <Grid item xs={12} sm={12} md={6}>
-          <EmailField
-            id="email"
-            label="Email"
-            value = { this.props.guest.email}
-            required={true}
-            onChange={this.onChangeEmail}
-            maxLength={50}
-          />
-        </Grid>
-        <Grid item xs={6} sm={4} md={2}>
-          <NumberField
-            id="phoneCountry"
-            label="Código País"
-            value = {this.props.guest.phone.countryCode}
-            required={true}
-            onChange={this.onChangeCountryCode}
-            maxLength={2}
-          />
-        </Grid>
-        <Grid item xs={6} sm={4} md={2}>
-          <NumberField
-            id="phoneArea"
-            label="Código Area"
-            value = {this.props.guest.phone.areaCode}
-            required={true}
-            onChange={this.onChangeAreaCode}
-            maxLength={10}
-          />
-        </Grid>
-        <Grid item xs={12} sm={4} md={2}>
-          <PhoneNumberField
-            id="phoneNumber"
-            label="Número Teléfono"
-            value = {this.props.guest.phone.number}
-            required={true}
-            onChange={this.onChangePhoneNumber}
-            maxLength={20}
-          />
-        </Grid>
       </Grid>
-    </Paper>;
+      <Grid item xs={12} sm={6}>
+        <OtravoTextField
+          id="name"
+          label="Nombre"
+          value={this.props.guest.name}
+          required={true}
+          onChange={this.onChangeName}
+          maxLength={30}
+        />
+      </Grid>
+      <Grid item xs={12} sm={6}>
+        <OtravoTextField
+          id="lastName"
+          label="Apellido"
+          value={this.props.guest.lastName}
+          required={true}
+          onChange={this.onChangeLastName}
+          maxLength={30}
+        />
+      </Grid>
+      <Grid item xs={12} sm={12} md={6}>
+        <EmailField
+          id="email"
+          label="Email"
+          value = { this.props.guest.email}
+          required={true}
+          onChange={this.onChangeEmail}
+          maxLength={50}
+        />
+      </Grid>
+      <Grid item xs={6} sm={4} md={2}>
+        <NumberField
+          id="phoneCountry"
+          label="Código País"
+          value = {this.props.guest.phone.countryCode}
+          required={true}
+          onChange={this.onChangeCountryCode}
+          maxLength={2}
+        />
+      </Grid>
+      <Grid item xs={6} sm={4} md={2}>
+        <NumberField
+          id="phoneArea"
+          label="Código Area"
+          value = {this.props.guest.phone.areaCode}
+          required={true}
+          onChange={this.onChangeAreaCode}
+          maxLength={10}
+        />
+      </Grid>
+      <Grid item xs={12} sm={4} md={2}>
+        <PhoneNumberField
+          id="phoneNumber"
+          label="Nro. Teléfono"
+          value = {this.props.guest.phone.number}
+          required={true}
+          onChange={this.onChangePhoneNumber}
+          maxLength={20}
+        />
+      </Grid>
+    </Grid>;
   }
 }
 
-export default Guest;
+export default Room;
