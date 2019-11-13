@@ -192,7 +192,7 @@ class Room extends Component<RoomProps, GuestState> {
           value = {this.props.guest.phone.countryCode}
           required={true}
           onChange={this.onChangeCountryCode}
-          maxLength={2}
+          maxLength={5}
         />
       </Grid>
       <Grid item xs={6} sm={4} md={2}>

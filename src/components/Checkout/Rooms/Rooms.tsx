@@ -9,7 +9,7 @@ export interface RoomsProps {
   onChange: (guest: RoomGuest, index: number) => void;
 }
 
-const room = (index: number, onChange: (guest: RoomGuest, index: number) => void) => <Paper>
+const room = (index: number, onChange: (guest: RoomGuest, index: number) => void) => <Paper key = {index}>
   <Room 
     guest={{name:"",
     lastName: "",
@@ -18,7 +18,7 @@ const room = (index: number, onChange: (guest: RoomGuest, index: number) => void
     }} 
     roomNumber = {index+1} 
     onChange = {(guest: RoomGuest):void => {onChange(guest, index)}} 
-    key = {index}/>
+    />
   </Paper>;
 
 const Rooms: SFC<RoomsProps> = props => {

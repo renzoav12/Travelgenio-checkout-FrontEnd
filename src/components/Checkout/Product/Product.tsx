@@ -70,18 +70,12 @@ const useStyles = makeStyles((theme: Theme) =>
     address: {
       marginTop: 10
     },
-    checkInOutSection: {
+    section: {
       marginTop: 20,
       paddingTop: 20,
       borderTopWidth: 1,
       borderTopStyle: "solid",
       borderTopColor: theme.palette.divider,
-      marginBottom: 20,
-      paddingBottom: 20,
-      borderBottomWidth: 1,
-      borderBottomStyle: "solid",
-      borderBottomColor: theme.palette.divider
-
     }
 
   }),
@@ -104,7 +98,7 @@ const Product: SFC<ProductProps> = props => {
         <Grid item xs={12} className={classes.address}>
           <LocationOnIcon fontSize="small"/> {props.location.address}
         </Grid>      
-        <Grid container item xs={12} className={classes.checkInOutSection}>
+        <Grid container item xs={12} className={classes.section}>
           <Grid item xs={6}>
             <Typography>Check In</Typography>
             <Typography variant="h2">{props.stay.checkIn.date}</Typography>
@@ -116,8 +110,14 @@ const Product: SFC<ProductProps> = props => {
             <Typography>{props.stay.checkOut.time}</Typography>
           </Grid>
         </Grid>
-        <Grid item xs={12}>
+        <Grid item xs={12} className={classes.section}>
             <Description text={props.description}/>
+        </Grid>
+        <Grid item xs={12} className={classes.section}>
+            <Description text={props.mealPlan.name}/>
+        </Grid>
+        <Grid item xs={12} className={classes.section}>
+            <Description text={props.cancelPolicy}/>
         </Grid>
       </Grid>
     </Paper>
