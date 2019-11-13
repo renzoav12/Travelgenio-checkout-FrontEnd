@@ -2,10 +2,23 @@ import _ from 'lodash';
 import { Reducer } from 'redux';
 import { RootAction } from '../actions/action';
 import { Checkout } from '../model/Checkout';
-import { GUESTS_SAVE_START, GUESTS_SAVE_FAILED, GUESTS_SAVE_SUCCESS, GUESTS_UPDATE } from '../actions/checkout/checkout.actionTypes';
+import { 
+  GUESTS_SAVE_START,
+  GUESTS_SAVE_FAILED,
+  GUESTS_SAVE_SUCCESS,
+  GUESTS_UPDATE
+} from '../actions/checkout/checkout.actionTypes';
+import {
+  ORDER_FETCH_START,
+  ORDER_FETCH_FAILED, 
+  ORDER_FETCH_SUCCESS, 
+  ORDER_UPDATE,
+  ORDER_SEARCH
+} from '../actions/order/order.actionTypes';
 
 const initialState: Checkout = {
     loading: false,
+    orderId: "",
     error: {
         exists: false,
     },
@@ -32,52 +45,52 @@ const initialState: Checkout = {
       }
     ],
     order: {
-      id: "1111",
+      id: "",
       pay: {
         price: {
-          amount: "2456.54",
-          currency: "EUR"
+          amount: "",
+          currency: ""
         }
       },
       product: {
-        id: "111122",
-        name: "Hotel Faena",
-        description: "description",
+        id: "",
+        name: "",
+        description: "",
         image: {
           url: ""
         },
         category: {
-          code: "4",
-          name: "5 estrellas"
+          code: "",
+          name: ""
         },
         location: {
-          address: "Av. del Liberador 1200",
+          address: "",
           geoPosition: {
-            latitude: 12.2356,
-            longitude: 15.9877
+            latitude: 0,
+            longitude: 0
           }
         },
         stay: {
           checkIn: {
-            date: "2012-11-11",
-            beginTime: "14:00",
-            endTime: "15:00"
+            date: "",
+            beginTime: "",
+            endTime: ""
           },
           checkOut: {
-            date: "2012-15-11",
-            time: "10:00"
+            date: "",
+            time: ""
           },
-          nights: 5
+          nights: 0
         },
         mealPlan: {
-          code: "1",
-          name: "Desayuno"
+          code: "",
+          name: ""
         },
         rooms: {
-          quantity: 2,
-          description: "Habitación con Vista al Mar."
+          quantity: 0,
+          description: ""
         },
-        cancelPolicy: "Cancela gratis hasta el 2019-11-20"
+        cancelPolicy: ""
       }
     }
 };
@@ -98,6 +111,19 @@ export const checkoutReducer: Reducer<Checkout, RootAction> = (
             ...state,
             guests: action.guests
           }
+      case ORDER_SEARCH:
+        return { ...state, orderId: action.id };
+      case ORDER_FETCH_START:
+        return { ...state, roomsLoading: true };
+      case ORDER_FETCH_FAILED:
+        return { ...state, roomsLoading: false };
+      case ORDER_FETCH_SUCCESS:
+        return {...state, roomsLoading: false };
+      case ORDER_UPDATE:
+        return {
+          ...state,
+          order: action.order
+        };
       default:
         return state;
     }

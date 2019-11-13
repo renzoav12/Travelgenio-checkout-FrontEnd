@@ -11,8 +11,10 @@ import { ProductProps } from './Product/Product';
 import { PayProps } from './Pay/Pay';
 
 export interface CheckoutProps {
+  orderId: string;
   order: Order;
   onSubmit: (guests: Array<RoomGuest>) => void;
+  onLoad: (id: string) => void;
 }
 
 export interface Order {

@@ -53,8 +53,8 @@ export const guestsSave = () => async (
     dispatch(guestsSaveStart());
     
     try {
-        const response: AxiosResponse = await checkout.post(
-            '/guests',
+        const response: AxiosResponse = await checkout.put(
+            '/orders/' + getState().checkout.orderId + '/guests',
             getState().checkout.guests
         );
     } catch (e) {

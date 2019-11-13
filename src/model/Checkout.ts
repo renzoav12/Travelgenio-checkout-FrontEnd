@@ -9,6 +9,7 @@ export interface CheckoutError {
 
 export interface Checkout {
     guests: Array<RoomGuest>;
+    orderId: string;
     order: Order;
     loading: boolean;
     error: CheckoutError;
