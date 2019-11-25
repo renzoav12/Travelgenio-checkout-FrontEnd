@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Grid, Typography } from '@material-ui/core';
+import { Grid, Typography, Hidden } from '@material-ui/core';
 import OtravoTextField from './OtravoTextField';
 import EmailField from './EmailField';
 import NumberField from './NumberField';
@@ -153,9 +153,9 @@ class Room extends Component<RoomProps, GuestState> {
   render = () => {
     return <Grid container spacing={2}>
       <Grid item xs={12}>
-        <Typography variant="h2">Habitación {this.props.roomNumber}</Typography>
+        <Typography variant="h1">Habitación {this.props.roomNumber}</Typography>
       </Grid>
-      <Grid item xs={12} sm={6}>
+      <Grid item xs={12} sm={6} md={4}>
         <OtravoTextField
           id="name"
           label="Nombre"
@@ -165,7 +165,7 @@ class Room extends Component<RoomProps, GuestState> {
           maxLength={30}
         />
       </Grid>
-      <Grid item xs={12} sm={6}>
+      <Grid item xs={12} sm={6} md={4}>
         <OtravoTextField
           id="lastName"
           label="Apellido"
@@ -175,17 +175,10 @@ class Room extends Component<RoomProps, GuestState> {
           maxLength={30}
         />
       </Grid>
-      <Grid item xs={12} sm={12} md={6}>
-        <EmailField
-          id="email"
-          label="Email"
-          value = { this.props.guest.email}
-          required={true}
-          onChange={this.onChangeEmail}
-          maxLength={50}
-        />
-      </Grid>
-      <Grid item xs={6} sm={4} md={2}>
+      <Hidden smDown>
+        <Grid item md={4}></Grid>
+      </Hidden>
+      <Grid item xs={8} sm={4} md={2}>
         <NumberField
           id="phoneCountry"
           label="Código País"
@@ -195,7 +188,7 @@ class Room extends Component<RoomProps, GuestState> {
           maxLength={5}
         />
       </Grid>
-      <Grid item xs={6} sm={4} md={2}>
+      <Grid item xs={4} sm={3} md={2}>
         <NumberField
           id="phoneArea"
           label="Código Area"
@@ -205,7 +198,7 @@ class Room extends Component<RoomProps, GuestState> {
           maxLength={10}
         />
       </Grid>
-      <Grid item xs={12} sm={4} md={2}>
+      <Grid item xs={12} sm={5} md={4}>
         <PhoneNumberField
           id="phoneNumber"
           label="Nro. Teléfono"
@@ -213,6 +206,19 @@ class Room extends Component<RoomProps, GuestState> {
           required={true}
           onChange={this.onChangePhoneNumber}
           maxLength={20}
+        />
+      </Grid>
+      <Hidden smDown>
+        <Grid item md={4}></Grid>
+      </Hidden>
+      <Grid item xs={12} sm={12} md={6} lg={4}>
+        <EmailField
+          id="email"
+          label="Email"
+          value = { this.props.guest.email}
+          required={true}
+          onChange={this.onChangeEmail}
+          maxLength={50}
         />
       </Grid>
     </Grid>;

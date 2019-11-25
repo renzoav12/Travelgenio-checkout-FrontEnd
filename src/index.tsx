@@ -6,6 +6,10 @@ import Root from './components/Root/root';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import CssBaseline from "@material-ui/core/CssBaseline";
 import './styles/fonts/fonts.scss';
+import { NONAME } from 'dns';
+import { SSL_OP_SINGLE_DH_USE } from 'constants';
+import { borderRadius } from '@material-ui/system';
+import { red } from '@material-ui/core/colors';
 
 const theme = createMuiTheme({
   palette: {
@@ -15,7 +19,7 @@ const theme = createMuiTheme({
         contrastText: "#FFFFFF",
     },
     background: {
-      default: "#ECEEF2"
+      default: "#E5E5E5"
     },
     text: {
       primary: "#3D4355"
@@ -26,12 +30,12 @@ const theme = createMuiTheme({
     fontFamily: "Open Sans",
     fontSize: 14,
     h1: {
-      fontSize: 22,
+      fontSize: 18,
       fontWeight: "bold"
     },
     h2: {
-      fontSize: 17,
-      fontWeight: "bold"
+      fontSize: 16,
+      fontWeight: 600
     }
   },
   overrides: {
@@ -41,7 +45,23 @@ const theme = createMuiTheme({
         marginTop: 20,
         marginLeft: 20,
         marginRight: 20,
-        width: "100%"
+        width: "100%",
+        borderStyle: "solid",
+        border: "1px",
+        borderColor: "#C0C6D1"
+      },
+      elevation1: {
+        boxShadow: "none"
+      }
+    },
+    MuiButton: {
+      root: {
+        fontWeight: 600,
+        fontSize: 18,
+        textTransform: "none"
+      },
+      contained: {
+        boxShadow: "none"
       }
     }
   }

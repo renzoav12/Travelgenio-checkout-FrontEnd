@@ -16,7 +16,7 @@ const Pay: SFC<PayProps> = props => {
     <Paper>
       <Grid container>
         <Grid item xs={6}>
-          <Typography variant="h1">Total</Typography>
+          <Typography variant="h1">Total a pagar</Typography>
         </Grid>
         <Grid item xs={6}>
           <Typography variant="h1" align="right">{props.price.amount} {props.price.currency}</Typography>

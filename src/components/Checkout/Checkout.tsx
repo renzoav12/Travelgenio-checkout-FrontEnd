@@ -36,6 +36,10 @@ const useStyles = makeStyles((theme: Theme) =>
       paddingRight: 20,
       textAlign: "right"
     },
+    continueButton: {
+      width: "223px",
+      height: "50px",
+    }
   }),
 );
 
@@ -56,24 +60,25 @@ const Checkout: SFC<CheckoutProps> = props => {
   }
 
   return <Grid container>
-    <Grid container item xs={12}>
-      <Paper>
-        <Typography variant="h1">Checkout</Typography>
-      </Paper>
+    <Grid container item 
+      xs={12}
+      direction="column" 
+      justify="flex-start" 
+      alignItems="center">
+        <Product {...props.order.product}/>
     </Grid>
-    <Grid container item  xs={12} md={6} lg={8}>
+    <Grid container item  xs={12}>
       <Rooms quantity={props.order.product.rooms.quantity} onChange={onChange}/>
     </Grid>
     <Grid container item 
-      xs={12} md={6} lg={4} 
+      xs={12}
       direction="column" 
       justify="flex-start" 
       alignItems="center">
         <Pay {...props.order.pay}/>
-        <Product {...props.order.product}/>
     </Grid>
     <Grid item xs={12} className={classes.buttonGrid}>
-      <Button variant="contained" color="primary" onClick={onSubmit}>Continuar</Button>
+      <Button variant="contained" color="primary" className={classes.continueButton} onClick={onSubmit}>Continuar</Button>
     </Grid>
   </Grid>;
 }

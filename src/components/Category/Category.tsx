@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     starIcon: {
       marginRight: 5,
-      color: 'gold'
+      color: '#DFB915'
     }
   }),
 );
