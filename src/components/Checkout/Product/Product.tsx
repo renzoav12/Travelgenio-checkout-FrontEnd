@@ -8,18 +8,25 @@ import Description from '../../Description';
 import KingBedIcon from '@material-ui/icons/KingBed';
 import PersonIcon from '@material-ui/icons/Person';
 import TodayIcon from '@material-ui/icons/Today';
+import { PayProps } from '../Pay/Pay';
 
 export interface ProductProps {
   id: string;
-  name: string;
-  description: string;
-  image: Image;
-  category: Category;
-  location: Location;
+  accommodation: Accommodation;
+  pay: PayProps;
   stay: Stay;
   mealPlan: MealPlan;
   cancelPolicy: string;
-  rooms: Rooms;
+  room: Room;
+  quantity: number;
+}
+
+export interface Accommodation {
+  id: string
+  category: Category;
+  image: Image;
+  name: string;
+  location: Location;
 }
 
 export interface Image {
@@ -63,8 +70,8 @@ export interface MealPlan {
   name: string;
 }
 
-export interface Rooms {
-  quantity: number;
+export interface Room {
+  name: string;
   description: string;
 }
 
@@ -87,20 +94,20 @@ const Product: SFC<ProductProps> = props => {
         </Grid>
         <Grid container item xs={12} alignItems="center" spacing={1}>
           <Grid item>
-            <Typography variant="h2">{props.name}</Typography>
+            <Typography variant="h2">{props.accommodation.name}</Typography>
           </Grid>
           <Grid item>
-            <Category stars={parseInt(props.category.code)}/>
+            <Category stars={parseInt(props.accommodation.category.code)}/>
           </Grid>
         </Grid>
         <Grid item xs={12} className={classes.cancelPolicy}>
             <Description text={props.cancelPolicy}/>
         </Grid>
         <Grid item xs={12}>
-          <LocationOnIcon fontSize="small"/> {props.location.address}
+          <LocationOnIcon fontSize="small"/> {props.accommodation.location.address}
         </Grid>      
         <Grid item xs={12}>
-          <KingBedIcon fontSize="small"/> {props.rooms.quantity} habitaciones. {props.rooms.description} | {props.mealPlan.name} 
+          <KingBedIcon fontSize="small"/> {props.quantity} habitaciones. {props.room.description} | {props.mealPlan.name} 
         </Grid>      
         <Grid item xs={12}>
           <PersonIcon fontSize="small"/> Estancia de {props.stay.nights} noches.

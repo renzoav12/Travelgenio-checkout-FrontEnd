@@ -11,16 +11,9 @@ import { ProductProps } from './Product/Product';
 import { PayProps } from './Pay/Pay';
 
 export interface CheckoutProps {
-  orderId: string;
-  order: Order;
+  product: ProductProps;
   onSubmit: (guests: Array<RoomGuest>) => void;
   onLoad: (id: string) => void;
-}
-
-export interface Order {
-  id: string;
-  pay: PayProps;
-  product: ProductProps;
 }
 
 export interface CheckoutState {
@@ -46,7 +39,7 @@ const useStyles = makeStyles((theme: Theme) =>
 const Checkout: SFC<CheckoutProps> = props => {
   const classes = useStyles();
 
-  const [guests, setGuests] = useState<Array<RoomGuest>>(new Array(props.order.product.rooms.quantity));
+  const [guests, setGuests] = useState<Array<RoomGuest>>(new Array(props.product.quantity));
   
   const onChange = (guest: RoomGuest, index: number): void => {
     let prevGuests: Array<RoomGuest> = guests;
@@ -65,17 +58,17 @@ const Checkout: SFC<CheckoutProps> = props => {
       direction="column" 
       justify="flex-start" 
       alignItems="center">
-        <Product {...props.order.product}/>
+        <Product {...props.product}/>
     </Grid>
     <Grid container item  xs={12}>
-      <Rooms quantity={props.order.product.rooms.quantity} onChange={onChange}/>
+      <Rooms quantity={props.product.quantity} onChange={onChange}/>
     </Grid>
     <Grid container item 
       xs={12}
       direction="column" 
       justify="flex-start" 
       alignItems="center">
-        <Pay {...props.order.pay}/>
+        <Pay {...props.product.pay}/>
     </Grid>
     <Grid item xs={12} className={classes.buttonGrid}>
       <Button variant="contained" color="primary" className={classes.continueButton} onClick={onSubmit}>Continuar</Button>
