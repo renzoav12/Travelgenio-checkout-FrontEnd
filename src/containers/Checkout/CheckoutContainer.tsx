@@ -4,14 +4,17 @@ import Checkout from '../../components/Checkout';
 import { CheckoutProps } from '../../components/Checkout/Checkout';
 import { RootState } from '../../store';
 import { connect } from 'react-redux';
-import { thunkGuestsSave } from '../../actions/checkout/checkout.action';
-import { thunkOrderLoad } from '../../actions/order/order.action';
+import { thunkGuestsSave } from '../../actions/guests/guests.action';
+import { thunkProductLoad } from '../../actions/product/product.action';
 
+interface CheckoutContainerProps extends CheckoutProps {
+  productId: string;
+}
 
-class CheckoutContainer extends Component<CheckoutProps> {
+class CheckoutContainer extends Component<CheckoutContainerProps> {
 
   componentDidMount() {
-    this.props.onLoad(this.props.orderId);
+    this.props.onLoad(this.props.productId);
   }
 
   render() {
@@ -21,15 +24,15 @@ class CheckoutContainer extends Component<CheckoutProps> {
 
 const mapStateToProps = (rootState: RootState, ownProps) => {
   return {
-      order: rootState.checkout.order,
-      orderId: ownProps.match.params.orderId
+      product: rootState.checkout.product,
+      productId: ownProps.match.params.productId
   };
 };
 
 export default connect(
   mapStateToProps,
   {
-    onLoad: thunkOrderLoad,
+    onLoad: thunkProductLoad,
     onSubmit: thunkGuestsSave
   }
 )(CheckoutContainer);

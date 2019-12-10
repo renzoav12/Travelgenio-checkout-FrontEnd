@@ -19,7 +19,7 @@ export interface GuestsUpdateAction extends Action<typeof GUESTS_UPDATE> {
     readonly guests: Array<RoomGuest>;
 }
 
-export type CheckoutActionTypes =
+export type GuestsActionTypes =
     | GuestsPersistStartAction
     | GuestsFetchFailedAction
     | GuestsPersistSuccessAction

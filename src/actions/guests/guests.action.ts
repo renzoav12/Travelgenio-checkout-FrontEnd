@@ -4,8 +4,8 @@ import {
     GUESTS_SAVE_FAILED,
     GUESTS_SAVE_SUCCESS,
     GUESTS_UPDATE, 
-    CheckoutActionTypes
-} from './checkout.actionTypes';
+    GuestsActionTypes
+} from './guests.actionTypes';
 import { RootState } from '../../store';
 import { AxiosResponse } from 'axios';
 import { RoomGuest } from '../../components/Checkout/Rooms/Room/Room';
@@ -15,25 +15,25 @@ import { RootAction } from '../action';
 
 export type ThunkResult<R> = ThunkAction<R, RootState, undefined, RootAction>;
 
-export function guestsSaveStart() : CheckoutActionTypes {
+export function guestsSaveStart() : GuestsActionTypes {
     return {
         type: GUESTS_SAVE_START
     }
 };
 
-export function guestsSaveSuccess() : CheckoutActionTypes {
+export function guestsSaveSuccess() : GuestsActionTypes {
     return {
         type: GUESTS_SAVE_SUCCESS
     }
 };
 
-export function guestsSaveFailed() : CheckoutActionTypes {
+export function guestsSaveFailed() : GuestsActionTypes {
     return {
         type: GUESTS_SAVE_FAILED
     }
 };
 
-export function guestsUpdate(guests: Array<RoomGuest>) : CheckoutActionTypes {
+export function guestsUpdate(guests: Array<RoomGuest>) : GuestsActionTypes {
     return {
         type: GUESTS_UPDATE,
         guests: guests
@@ -53,8 +53,8 @@ export const guestsSave = () => async (
     dispatch(guestsSaveStart());
     
     try {
-        const response: AxiosResponse = await checkout.put(
-            '/orders/' + getState().checkout.orderId + '/guests',
+        const response: AxiosResponse = await checkout.post(
+            '/products/' + getState().checkout.product.id + '/guests',
             getState().checkout.guests
         );
     } catch (e) {
