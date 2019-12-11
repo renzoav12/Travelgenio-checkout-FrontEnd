@@ -107,7 +107,7 @@ const Product: SFC<ProductProps> = props => {
           <LocationOnIcon fontSize="small"/> {props.accommodation.location.address}
         </Grid>      
         <Grid item xs={12}>
-          <KingBedIcon fontSize="small"/> {props.quantity} habitaciones. {props.room.description} | {props.mealPlan.name} 
+          <KingBedIcon fontSize="small"/> {props.quantity} habitaciones. {props.room.description} | {props.mealPlan? props.mealPlan.name : 'Solo habitación'} 
         </Grid>      
         <Grid item xs={12}>
           <PersonIcon fontSize="small"/> Estancia de {props.stay.nights} noches.
