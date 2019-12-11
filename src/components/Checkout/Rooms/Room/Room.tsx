@@ -3,7 +3,6 @@ import { Grid, Typography, Hidden } from '@material-ui/core';
 import OtravoTextField from './OtravoTextField';
 import EmailField from './EmailField';
 import NumberField from './NumberField';
-import PhoneNumberField from './PhoneNumberField';
 
 
 export interface RoomProps {
@@ -199,7 +198,7 @@ class Room extends Component<RoomProps, GuestState> {
         />
       </Grid>
       <Grid item xs={12} sm={5} md={4}>
-        <PhoneNumberField
+        <NumberField
           id="phoneNumber"
           label="Nro. Teléfono"
           value = {this.props.guest.phone.number}
