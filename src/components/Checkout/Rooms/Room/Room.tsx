@@ -77,7 +77,7 @@ class Room extends Component<RoomProps, GuestState> {
     this.setState((prevState: GuestState) => {
       let guest: RoomGuest = {
         name: prevState.guest.name,
-        lastName: prevState.guest.name,
+        lastName: prevState.guest.lastName,
         email: value,
         phone: {
           countryCode: prevState.guest.phone.countryCode,
@@ -96,7 +96,7 @@ class Room extends Component<RoomProps, GuestState> {
     this.setState((prevState: GuestState) => {
       let guest: RoomGuest = {
         name: prevState.guest.name,
-        lastName: prevState.guest.name,
+        lastName: prevState.guest.lastName,
         email: prevState.guest.email,
         phone: {
           countryCode: value,
@@ -115,7 +115,7 @@ class Room extends Component<RoomProps, GuestState> {
     this.setState((prevState: GuestState) => {
       let guest: RoomGuest = {
         name: prevState.guest.name,
-        lastName: prevState.guest.name,
+        lastName: prevState.guest.lastName,
         email: prevState.guest.email,
         phone: {
           countryCode: prevState.guest.phone.countryCode,
@@ -134,7 +134,7 @@ class Room extends Component<RoomProps, GuestState> {
     this.setState((prevState: GuestState) => {
       let guest: RoomGuest = {
         name: prevState.guest.name,
-        lastName: prevState.guest.name,
+        lastName: prevState.guest.lastName,
         email: prevState.guest.email,
         phone: {
           countryCode: prevState.guest.phone.countryCode,
