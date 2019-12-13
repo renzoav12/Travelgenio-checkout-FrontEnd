@@ -40,9 +40,10 @@ export function guestsUpdate(guests: Array<RoomGuest>) : GuestsActionTypes {
     }
 };
 
-export const thunkGuestsSave = (): ThunkResult<void> => async (
+export const thunkGuestsSave = (guests: Array<RoomGuest>): ThunkResult<void> => async (
     dispatch
   ) => {
+    dispatch(guestsUpdate(guests));
     dispatch(guestsSave());
 };
 

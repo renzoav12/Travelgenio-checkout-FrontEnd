@@ -48,7 +48,6 @@ const Checkout: SFC<CheckoutProps> = props => {
   }
 
   const onSubmit = (): void => {
-    console.info(guests);
     props.onSubmit(guests);
   }
 
