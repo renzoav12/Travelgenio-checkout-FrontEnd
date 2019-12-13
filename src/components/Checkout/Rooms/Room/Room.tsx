@@ -8,7 +8,7 @@ import NumberField from './NumberField';
 export interface RoomProps {
   roomNumber: number; 
   guest: RoomGuest;
-  onChange: (guest: RoomGuest) => void;
+  onChange: (guest: RoomGuest, valid: boolean) => void;
 }
 
 export interface RoomGuest {
@@ -26,129 +26,128 @@ export interface Phone {
 
 export interface GuestState {
   guest: RoomGuest;
+  validation: RoomValidation;
+}
+
+interface RoomValidation {
+  name: boolean;
+  lastName: boolean;
+  email: boolean;
+  phone: PhoneValidation;
+}
+
+interface PhoneValidation {
+  countryCode: boolean;
+  areaCode: boolean;
+  number: boolean;
 }
 
 class Room extends Component<RoomProps, GuestState> {
   constructor(props) {
     super(props);
     this.state = {
-      guest: props.guest
+      guest: props.guest,
+      validation: {
+        name: false,
+        lastName: false,
+        email: false,
+        phone: {
+          countryCode: false,
+          areaCode: false,
+          number: false
+        }
+      }
     };
   }
 
-  onChangeName = (value: string): void => {
+  onChangeName = (value: string, valid: boolean): void => {
     this.setState((prevState: GuestState) => {
-      let guest: RoomGuest = {
-        name: value,
-        lastName: prevState.guest.lastName,
-        email: prevState.guest.email,
-        phone: {
-          countryCode: prevState.guest.phone.countryCode,
-          areaCode: prevState.guest.phone.areaCode,
-          number: prevState.guest.phone.number
-        }
-      };
-      this.props.onChange(guest);      
+      let state:GuestState = {...prevState};
 
-      return { guest: guest };
+      console.info(`${value} -> ${valid}`);
+
+      state.guest.name = value;
+      state.validation.name = valid;
+
+      this.props.onChange(state.guest, this.isFormRoomValid(state.validation));      
+
+      return state;
     });
   }
 
-  onChangeLastName = (value: string): void => {
+  onChangeLastName = (value: string, valid: boolean): void => {
     this.setState((prevState: GuestState) => {
-      let guest: RoomGuest = {
-        name: prevState.guest.name,
-        lastName: value,
-        email: prevState.guest.email,
-        phone: {
-          countryCode: prevState.guest.phone.countryCode,
-          areaCode: prevState.guest.phone.areaCode,
-          number: prevState.guest.phone.number
-        }
-      };
-      
-      this.props.onChange(guest);      
+      let state:GuestState = {...prevState};
 
-      return { guest: guest };
+      state.guest.lastName = value;
+      state.validation.lastName = valid;
+
+      this.props.onChange(state.guest, this.isFormRoomValid(state.validation));      
+
+      return state;
     });
   }
 
-  onChangeEmail = (value: string): void => {
+  onChangeEmail = (value: string, valid: boolean): void => {
     this.setState((prevState: GuestState) => {
-      let guest: RoomGuest = {
-        name: prevState.guest.name,
-        lastName: prevState.guest.lastName,
-        email: value,
-        phone: {
-          countryCode: prevState.guest.phone.countryCode,
-          areaCode: prevState.guest.phone.areaCode,
-          number: prevState.guest.phone.number
-        }
-      };
-      
-      this.props.onChange(guest);      
+      let state:GuestState = {...prevState};
 
-      return { guest: guest };
+      state.guest.email = value;
+      state.validation.email = valid;
+
+      this.props.onChange(state.guest, this.isFormRoomValid(state.validation));      
+
+      return state;
     });
   }
 
-  onChangeCountryCode = (value: string): void => {
+  onChangeCountryCode = (value: string, valid: boolean): void => {
     this.setState((prevState: GuestState) => {
-      let guest: RoomGuest = {
-        name: prevState.guest.name,
-        lastName: prevState.guest.lastName,
-        email: prevState.guest.email,
-        phone: {
-          countryCode: value,
-          areaCode: prevState.guest.phone.areaCode,
-          number: prevState.guest.phone.number
-        }
-      };
-      
-      this.props.onChange(guest);      
+      let state:GuestState = {...prevState};
 
-      return { guest: guest };
+      state.guest.phone.countryCode = value;
+      state.validation.phone.countryCode = valid;
+
+      this.props.onChange(state.guest, this.isFormRoomValid(state.validation));      
+
+      return state;
     });
   }
 
-  onChangeAreaCode = (value: string): void => {
+  onChangeAreaCode = (value: string, valid: boolean): void => {
     this.setState((prevState: GuestState) => {
-      let guest: RoomGuest = {
-        name: prevState.guest.name,
-        lastName: prevState.guest.lastName,
-        email: prevState.guest.email,
-        phone: {
-          countryCode: prevState.guest.phone.countryCode,
-          areaCode: value,
-          number: prevState.guest.phone.number
-        }
-      };
-      
-      this.props.onChange(guest);      
+      let state:GuestState = {...prevState};
 
-      return { guest: guest };
+      state.guest.phone.areaCode = value;
+      state.validation.phone.areaCode = valid;
+
+      this.props.onChange(state.guest, this.isFormRoomValid(state.validation));      
+
+      return state;
     });
   }
 
-  onChangePhoneNumber = (value: string): void => {
+  onChangePhoneNumber = (value: string, valid: boolean): void => {
     this.setState((prevState: GuestState) => {
-      let guest: RoomGuest = {
-        name: prevState.guest.name,
-        lastName: prevState.guest.lastName,
-        email: prevState.guest.email,
-        phone: {
-          countryCode: prevState.guest.phone.countryCode,
-          areaCode: prevState.guest.phone.areaCode,
-          number: value
-        }
-      };
-      
-      this.props.onChange(guest);      
+      let state:GuestState = {...prevState};
 
-      return { guest: guest };
+      state.guest.phone.number = value;
+      state.validation.phone.number = valid;
+
+      this.props.onChange(state.guest, this.isFormRoomValid(state.validation));      
+
+      return state;
     });
   }
 
+  isFormRoomValid = (validation: RoomValidation): boolean => {
+    return validation.name
+        && validation.lastName
+        && validation.email
+        && validation.phone.countryCode
+        && validation.phone.areaCode
+        && validation.phone.number;
+  }
   render = () => {
     return <Grid container spacing={2}>
       <Grid item xs={12}>
