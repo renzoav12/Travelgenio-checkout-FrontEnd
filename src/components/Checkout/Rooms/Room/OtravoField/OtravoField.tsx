@@ -9,7 +9,7 @@ export interface OtravoFieldProps {
   maxLength?: number;
   error?: boolean;
   errorMessage?: string;
-  onChange: (value:string) => void;
+  onChange: (value:string, valid:boolean) => void;
 }
 
 export interface OtravoFieldState {
@@ -34,15 +34,14 @@ class OtravoField extends Component<OtravoFieldProps, OtravoFieldState> {
   
   onChange = (event): void => {
     let value = event.target.value;
-    this.validate(event.target.value);
-    this.props.onChange(value);
+    this.props.onChange(value, this.validate(event.target.value));
   }
 
   onBlur = (event): void => {
     this.validate(event.target.value);
   }
 
-  validate = (value:string): void => {
+  validate = (value:string): boolean => {
     let errorMessage = "";
     let error = false;
 
@@ -58,6 +57,8 @@ class OtravoField extends Component<OtravoFieldProps, OtravoFieldState> {
         error: error,
         errorMessage : errorMessage
     });
+
+    return !error;
   }
 
   isEmpty(value:string): boolean {

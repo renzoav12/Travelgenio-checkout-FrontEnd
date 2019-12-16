@@ -18,6 +18,8 @@ export interface CheckoutProps {
 
 export interface CheckoutState {
   guests: Array<RoomGuest>;
+  validRooms: Array<boolean>;
+  enableSubmit: boolean;
 }
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -40,11 +42,17 @@ const Checkout: SFC<CheckoutProps> = props => {
   const classes = useStyles();
 
   const [guests, setGuests] = useState<Array<RoomGuest>>(new Array(props.product.quantity));
+  const [validRooms, setValidRooms] = useState<Array<boolean>>(new Array(props.product.quantity));
+  const [enableSubmit, setEnableSubmit] = useState<boolean>(false);
   
-  const onChange = (guest: RoomGuest, index: number): void => {
+  const onChange = (guest: RoomGuest, index: number, isRoomValid: boolean): void => {
     let prevGuests: Array<RoomGuest> = guests;
+    let prevValidRooms: Array<boolean> = validRooms;
     prevGuests[index] = guest;
+    prevValidRooms[index] = isRoomValid;
     setGuests(prevGuests);
+    setValidRooms(prevValidRooms);
+    setEnableSubmit(prevValidRooms.every(valid => valid));
   }
 
   const onSubmit = (): void => {
@@ -70,7 +78,7 @@ const Checkout: SFC<CheckoutProps> = props => {
         <Pay {...props.product.pay}/>
     </Grid>
     <Grid item xs={12} className={classes.buttonGrid}>
-      <Button variant="contained" color="primary" className={classes.continueButton} onClick={onSubmit}>Continuar</Button>
+      <Button variant="contained" color="primary" disabled={!enableSubmit} className={classes.continueButton} onClick={onSubmit}>Continuar</Button>
     </Grid>
   </Grid>;
 }

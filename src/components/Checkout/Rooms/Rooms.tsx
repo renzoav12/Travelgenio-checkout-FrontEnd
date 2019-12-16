@@ -6,10 +6,10 @@ import { RoomGuest } from './Room/Room';
 
 export interface RoomsProps {
   quantity: number;
-  onChange: (guest: RoomGuest, index: number) => void;
+  onChange: (guest: RoomGuest, index: number, isRoomValid: boolean) => void;
 }
 
-const room = (index: number, onChange: (guest: RoomGuest, index: number) => void) => <Paper key = {index}>
+const room = (index: number, onChange: (guest: RoomGuest, index: number, isRoomValid: boolean) => void) => <Paper key = {index}>
   <Room 
     guest={{name:"",
     lastName: "",
@@ -17,7 +17,7 @@ const room = (index: number, onChange: (guest: RoomGuest, index: number) => void
     phone: {countryCode:"", areaCode:"", number: ""}
     }} 
     roomNumber = {index+1} 
-    onChange = {(guest: RoomGuest):void => {onChange(guest, index)}} 
+    onChange = {(guest: RoomGuest, isRoomValid: boolean):void => {onChange(guest, index, isRoomValid)}} 
     />
   </Paper>;
 
