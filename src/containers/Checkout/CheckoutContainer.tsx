@@ -25,6 +25,7 @@ class CheckoutContainer extends Component<CheckoutContainerProps> {
 const mapStateToProps = (rootState: RootState, ownProps) => {
   return {
       product: rootState.checkout.product,
+      loading: rootState.checkout.loading,
       productId: ownProps.match.params.productId
   };
 };
