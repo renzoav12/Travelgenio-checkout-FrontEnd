@@ -1,17 +1,17 @@
 import React, { SFC, useState } from 'react';
-import { Grid, Typography } from '@material-ui/core';
+import { Grid } from '@material-ui/core';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import { RoomGuest } from './Rooms/Room/Room';
 import Rooms from './Rooms';
 import Pay from './Pay';
 import Product from './Product';
 import { ProductProps } from './Product/Product';
-import { PayProps } from './Pay/Pay';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 export interface CheckoutProps {
   product: ProductProps;
+  loading: boolean;
   onSubmit: (guests: Array<RoomGuest>) => void;
   onLoad: (id: string) => void;
 }
@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme: Theme) =>
     continueButton: {
       width: "223px",
       height: "50px",
-    }
+    }  
   }),
 );
 
@@ -68,7 +68,7 @@ const Checkout: SFC<CheckoutProps> = props => {
         <Product {...props.product}/>
     </Grid>
     <Grid container item  xs={12}>
-      <Rooms quantity={props.product.quantity} onChange={onChange}/>
+      <Rooms quantity={props.product.quantity} loading={props.loading} onChange={onChange}/>
     </Grid>
     <Grid container item 
       xs={12}
@@ -78,7 +78,10 @@ const Checkout: SFC<CheckoutProps> = props => {
         <Pay {...props.product.pay}/>
     </Grid>
     <Grid item xs={12} className={classes.buttonGrid}>
-      <Button variant="contained" color="primary" disabled={!enableSubmit} className={classes.continueButton} onClick={onSubmit}>Continuar</Button>
+      <Button variant="contained" color="primary" disabled={props.loading || !enableSubmit} className={classes.continueButton} onClick={onSubmit}>
+        {props.loading ? <CircularProgress color="primary" size={25}/> :"Continuar"}
+      </Button>
+      
     </Grid>
   </Grid>;
 }

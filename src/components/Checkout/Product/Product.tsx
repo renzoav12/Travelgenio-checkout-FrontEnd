@@ -131,7 +131,7 @@ const Product: SFC<ProductProps> = props => {
             <Typography variant="h2">Salida: {props.stay.checkOut.date}</Typography> 
           </Grid>
           <Grid item>
-            | Hasta las {props.stay.checkIn.beginTime}
+            | Hasta las {props.stay.checkOut.time}
           </Grid>
         </Grid>      
       </Grid>

@@ -1,13 +1,13 @@
-import React, { Component } from 'react';
+import React,  { SFC, useState } from 'react';
 import { Grid, Typography, Hidden } from '@material-ui/core';
 import OtravoTextField from './OtravoTextField';
 import EmailField from './EmailField';
 import NumberField from './NumberField';
 
-
 export interface RoomProps {
   roomNumber: number; 
   guest: RoomGuest;
+  loading: boolean;
   onChange: (guest: RoomGuest, valid: boolean) => void;
 }
 
@@ -42,105 +42,88 @@ interface PhoneValidation {
   number: boolean;
 }
 
-class Room extends Component<RoomProps, GuestState> {
-  constructor(props) {
-    super(props);
-    this.state = {
-      guest: props.guest,
-      validation: {
-        name: false,
-        lastName: false,
-        email: false,
-        phone: {
-          countryCode: false,
-          areaCode: false,
-          number: false
-        }
+
+const Room: SFC<RoomProps> = props => {
+
+  const [guest, setGuest] = useState<GuestState>({
+    guest: props.guest,
+    validation: {
+      name: false,
+      lastName: false,
+      email: false,
+      phone: {
+        countryCode: false,
+        areaCode: false,
+        number: false
       }
-    };
+    }});
+
+  const onChangeName = (value: string, valid: boolean): void => {
+      let prevGuest: GuestState = {...guest};
+      prevGuest.guest.name = value;
+      prevGuest.validation.name = valid;
+
+      props.onChange(prevGuest.guest, isFormRoomValid(prevGuest.validation));      
+
+      setGuest(prevGuest);
   }
 
-  onChangeName = (value: string, valid: boolean): void => {
-    this.setState((prevState: GuestState) => {
-      let state:GuestState = {...prevState};
+  const onChangeLastName = (value: string, valid: boolean): void => {
+      let prevGuest: GuestState = {...guest};
 
-      console.info(`${value} -> ${valid}`);
+      prevGuest.guest.lastName = value;
+      prevGuest.validation.lastName = valid;
 
-      state.guest.name = value;
-      state.validation.name = valid;
+      props.onChange(prevGuest.guest, isFormRoomValid(prevGuest.validation));      
 
-      this.props.onChange(state.guest, this.isFormRoomValid(state.validation));      
-
-      return state;
-    });
+      setGuest(prevGuest);
   }
 
-  onChangeLastName = (value: string, valid: boolean): void => {
-    this.setState((prevState: GuestState) => {
-      let state:GuestState = {...prevState};
+  const onChangeEmail = (value: string, valid: boolean): void => {
+      let prevGuest: GuestState = {...guest};
 
-      state.guest.lastName = value;
-      state.validation.lastName = valid;
+      prevGuest.guest.email = value;
+      prevGuest.validation.email = valid;
 
-      this.props.onChange(state.guest, this.isFormRoomValid(state.validation));      
+      props.onChange(prevGuest.guest, isFormRoomValid(prevGuest.validation));      
 
-      return state;
-    });
+      setGuest(prevGuest);
   }
 
-  onChangeEmail = (value: string, valid: boolean): void => {
-    this.setState((prevState: GuestState) => {
-      let state:GuestState = {...prevState};
+  const onChangeCountryCode = (value: string, valid: boolean): void => {
+      let prevGuest: GuestState = {...guest};
 
-      state.guest.email = value;
-      state.validation.email = valid;
+      prevGuest.guest.phone.countryCode = value;
+      prevGuest.validation.phone.countryCode = valid;
 
-      this.props.onChange(state.guest, this.isFormRoomValid(state.validation));      
+      props.onChange(prevGuest.guest, isFormRoomValid(prevGuest.validation));      
 
-      return state;
-    });
+      setGuest(prevGuest);
   }
 
-  onChangeCountryCode = (value: string, valid: boolean): void => {
-    this.setState((prevState: GuestState) => {
-      let state:GuestState = {...prevState};
+  const onChangeAreaCode = (value: string, valid: boolean): void => {
+      let prevGuest:GuestState = {...guest};
 
-      state.guest.phone.countryCode = value;
-      state.validation.phone.countryCode = valid;
+      prevGuest.guest.phone.areaCode = value;
+      prevGuest.validation.phone.areaCode = valid;
 
-      this.props.onChange(state.guest, this.isFormRoomValid(state.validation));      
+      props.onChange(prevGuest.guest, isFormRoomValid(prevGuest.validation));      
 
-      return state;
-    });
+      setGuest(prevGuest);
   }
 
-  onChangeAreaCode = (value: string, valid: boolean): void => {
-    this.setState((prevState: GuestState) => {
-      let state:GuestState = {...prevState};
+  const onChangePhoneNumber = (value: string, valid: boolean): void => {
+      let prevGuest:GuestState = {...guest};
 
-      state.guest.phone.areaCode = value;
-      state.validation.phone.areaCode = valid;
+      prevGuest.guest.phone.number = value;
+      prevGuest.validation.phone.number = valid;
 
-      this.props.onChange(state.guest, this.isFormRoomValid(state.validation));      
+      props.onChange(prevGuest.guest, isFormRoomValid(prevGuest.validation));      
 
-      return state;
-    });
+      setGuest(prevGuest);
   }
 
-  onChangePhoneNumber = (value: string, valid: boolean): void => {
-    this.setState((prevState: GuestState) => {
-      let state:GuestState = {...prevState};
-
-      state.guest.phone.number = value;
-      state.validation.phone.number = valid;
-
-      this.props.onChange(state.guest, this.isFormRoomValid(state.validation));      
-
-      return state;
-    });
-  }
-
-  isFormRoomValid = (validation: RoomValidation): boolean => {
+  const isFormRoomValid = (validation: RoomValidation): boolean => {
     return validation.name
         && validation.lastName
         && validation.email
@@ -148,79 +131,78 @@ class Room extends Component<RoomProps, GuestState> {
         && validation.phone.areaCode
         && validation.phone.number;
   }
-  render = () => {
-    return <Grid container spacing={2}>
-      <Grid item xs={12}>
-        <Typography variant="h1">Habitación {this.props.roomNumber}</Typography>
-      </Grid>
-      <Grid item xs={12} sm={6} md={4}>
-        <OtravoTextField
-          id="name"
-          label="Nombre"
-          value={this.props.guest.name}
-          required={true}
-          onChange={this.onChangeName}
-          maxLength={30}
-        />
-      </Grid>
-      <Grid item xs={12} sm={6} md={4}>
-        <OtravoTextField
-          id="lastName"
-          label="Apellido"
-          value={this.props.guest.lastName}
-          required={true}
-          onChange={this.onChangeLastName}
-          maxLength={30}
-        />
-      </Grid>
-      <Hidden smDown>
-        <Grid item md={4}></Grid>
-      </Hidden>
-      <Grid item xs={8} sm={4} md={2}>
-        <NumberField
-          id="phoneCountry"
-          label="Código País"
-          value = {this.props.guest.phone.countryCode}
-          required={true}
-          onChange={this.onChangeCountryCode}
-          maxLength={5}
-        />
-      </Grid>
-      <Grid item xs={4} sm={3} md={2}>
-        <NumberField
-          id="phoneArea"
-          label="Código Area"
-          value = {this.props.guest.phone.areaCode}
-          required={true}
-          onChange={this.onChangeAreaCode}
-          maxLength={10}
-        />
-      </Grid>
-      <Grid item xs={12} sm={5} md={4}>
-        <NumberField
-          id="phoneNumber"
-          label="Nro. Teléfono"
-          value = {this.props.guest.phone.number}
-          required={true}
-          onChange={this.onChangePhoneNumber}
-          maxLength={20}
-        />
-      </Grid>
-      <Hidden smDown>
-        <Grid item md={4}></Grid>
-      </Hidden>
-      <Grid item xs={12} sm={12} md={6} lg={4}>
-        <EmailField
-          id="email"
-          label="Email"
-          value = { this.props.guest.email}
-          required={true}
-          onChange={this.onChangeEmail}
-          maxLength={50}
-        />
-      </Grid>
-    </Grid>;
-  }
+
+  return <Grid container spacing={2} >
+    <Grid item xs={12}>
+      <Typography variant="h1">Habitación {props.roomNumber}</Typography>
+    </Grid>
+    <Grid item xs={12} sm={6} md={4}>
+      <OtravoTextField
+        id="name"
+        label="Nombre"
+        value={props.guest.name}
+        required={true}
+        onChange={onChangeName}
+        maxLength={30}
+      />
+    </Grid>
+    <Grid item xs={12} sm={6} md={4}>
+      <OtravoTextField
+        id="lastName"
+        label="Apellido"
+        value={props.guest.lastName}
+        required={true}
+        onChange={onChangeLastName}
+        maxLength={30}
+      />
+    </Grid>
+    <Hidden smDown>
+      <Grid item md={4}></Grid>
+    </Hidden>
+    <Grid item xs={8} sm={4} md={2}>
+      <NumberField
+        id="phoneCountry"
+        label="Código País"
+        value = {props.guest.phone.countryCode}
+        required={true}
+        onChange={onChangeCountryCode}
+        maxLength={5}
+      />
+    </Grid>
+    <Grid item xs={4} sm={3} md={2}>
+      <NumberField
+        id="phoneArea"
+        label="Código Area"
+        value = {props.guest.phone.areaCode}
+        required={true}
+        onChange={onChangeAreaCode}
+        maxLength={10}
+      />
+    </Grid>
+    <Grid item xs={12} sm={5} md={4}>
+      <NumberField
+        id="phoneNumber"
+        label="Nro. Teléfono"
+        value = {props.guest.phone.number}
+        required={true}
+        onChange={onChangePhoneNumber}
+        maxLength={20}
+      />
+    </Grid>
+    <Hidden smDown>
+      <Grid item md={4}></Grid>
+    </Hidden>
+    <Grid item xs={12} sm={12} md={6} lg={4}>
+      <EmailField
+        id="email"
+        label="Email"
+        value = {props.guest.email}
+        required={true}
+        onChange={onChangeEmail}
+        maxLength={50}
+      />
+    </Grid>
+  </Grid>;
 }
 
 export default Room;
