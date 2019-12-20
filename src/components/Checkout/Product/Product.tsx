@@ -9,6 +9,7 @@ import KingBedIcon from '@material-ui/icons/KingBed';
 import PersonIcon from '@material-ui/icons/Person';
 import TodayIcon from '@material-ui/icons/Today';
 import { PayProps } from '../Pay/Pay';
+import Occupancy from './Occupancy';
 
 export interface ProductProps {
   id: string;
@@ -19,6 +20,7 @@ export interface ProductProps {
   cancelPolicy: string;
   room: Room;
   quantity: number;
+  occupancy: Occupancy;
 }
 
 export interface Accommodation {
@@ -75,6 +77,11 @@ export interface Room {
   description: string;
 }
 
+export interface Occupancy {
+  adults: number;
+  children: number;
+}
+
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     cancelPolicy: {
@@ -85,7 +92,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const Product: SFC<ProductProps> = props => {
   const classes = useStyles();
-  
+
   return <Grid container>
     <Paper>
       <Grid container spacing={2}>
@@ -107,10 +114,10 @@ const Product: SFC<ProductProps> = props => {
           <LocationOnIcon fontSize="small"/> {props.accommodation.location.address}
         </Grid>      
         <Grid item xs={12}>
-          <KingBedIcon fontSize="small"/> {props.quantity} habitaciones. {props.room.description} | {props.mealPlan? props.mealPlan.name : 'Solo habitación'} 
+          <KingBedIcon fontSize="small"/> {props.quantity} habitaciones. {props.room.description} | {props.mealPlan? props.mealPlan.name : 'Solo habitación.'} 
         </Grid>      
         <Grid item xs={12}>
-          <PersonIcon fontSize="small"/> Estancia de {props.stay.nights} noches.
+          <PersonIcon fontSize="small"/> <Occupancy {...props.occupancy}/> | Estancia de {props.stay.nights} noches.
         </Grid>      
         <Grid container item xs={12} alignItems="center" spacing={1}>
           <Grid item>
