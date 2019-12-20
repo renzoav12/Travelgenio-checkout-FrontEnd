@@ -92,6 +92,10 @@ const initialState: Checkout = {
     },
     cancelPolicy: "",
     quantity: 0,
+    occupancy: {
+      adults: 0,
+      children: 0
+    }
   }
 };
 
