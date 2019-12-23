@@ -8,7 +8,7 @@ export interface OccupancyProps {
 
 const Occupancy: SFC<OccupancyProps> = props => {
   const adultsText = props.adults + (props.adults == 1 ? " adulto" : " adultos");
-  const childrenText = props.children > 0 ? ", " + props.children + (props.children == 1 ? " niño" : " nuños") : "";
+  const childrenText = props.children > 0 ? ", " + props.children + (props.children == 1 ? " niño" : " niños") : "";
 
   return <span>{adultsText}{childrenText}</span>;
 }
