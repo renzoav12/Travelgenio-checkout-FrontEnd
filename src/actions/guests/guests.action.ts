@@ -58,8 +58,11 @@ export const guestsSave = () => async (
             '/products/' + getState().checkout.product.id + '/guests',
             getState().checkout.guests
         );
+        
+        window.location.replace("http://localhost:49506/Hotel/Payment/es-ES/201/" + getState().checkout.product.id);
     } catch (e) {
         dispatch(guestsSaveFailed());
     }
+
     dispatch(guestsSaveSuccess());
 };
