@@ -4,7 +4,7 @@ import { Route, Switch } from 'react-router'
 import {
   ROUTE_CHECKOUT
 } from './root.routes.constants'
-import CheckoutContainer from '../../containers/Checkout'
+import CheckoutContainer from '../../containers/Checkout/CheckoutContainer'
 
 export const getRoutes = () => (
   <div>

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 
-import Checkout from '../../components/Checkout';
-import { CheckoutProps } from '../../components/Checkout/Checkout';
+import Checkout, { CheckoutProps } from '../../components/Checkout/Checkout';
 import { RootState } from '../../store';
 import { connect } from 'react-redux';
 import { thunkGuestsSave } from '../../actions/guests/guests.action';
@@ -26,6 +25,7 @@ const mapStateToProps = (rootState: RootState, ownProps) => {
   return {
       product: rootState.checkout.product,
       loading: rootState.checkout.loading,
+      roomsLoading: rootState.checkout.roomsLoading,
       productId: ownProps.match.params.productId
   };
 };

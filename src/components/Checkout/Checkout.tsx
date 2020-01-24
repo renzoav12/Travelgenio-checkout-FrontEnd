@@ -1,17 +1,17 @@
-import React, { SFC, useState } from 'react';
+import React, { FunctionComponent, useState } from 'react';
 import { Grid } from '@material-ui/core';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import { RoomGuest } from './Rooms/Room/Room';
-import Rooms from './Rooms';
-import Pay from './Pay';
-import Product from './Product';
-import { ProductProps } from './Product/Product';
+import Rooms from './Rooms/Rooms';
+import Pay from './Pay/Pay';
+import Product, { ProductProps } from './Product/Product';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 export interface CheckoutProps {
   product: ProductProps;
   loading: boolean;
+  roomsLoading: boolean;
   onSubmit: (guests: Array<RoomGuest>) => void;
   onLoad: (id: string) => void;
 }
@@ -34,11 +34,11 @@ const useStyles = makeStyles((theme: Theme) =>
     continueButton: {
       width: "223px",
       height: "50px",
-    }  
+    }
   }),
 );
 
-const Checkout: SFC<CheckoutProps> = props => {
+const Checkout: FunctionComponent<CheckoutProps> = props => {
   const classes = useStyles();
 
   const [guests, setGuests] = useState<Array<RoomGuest>>(new Array(props.product.quantity));
@@ -65,23 +65,22 @@ const Checkout: SFC<CheckoutProps> = props => {
       direction="column" 
       justify="flex-start" 
       alignItems="center">
-        <Product {...props.product}/>
+        <Product {...props.product} roomsLoading={props.roomsLoading}/>
     </Grid>
-    <Grid container item  xs={12}>
-      <Rooms quantity={props.product.quantity} loading={props.loading} onChange={onChange}/>
+    <Grid container item xs={12}>
+      {!props.roomsLoading && <Rooms quantity={props.product.quantity} loading={props.loading} onChange={onChange}/>}
     </Grid>
     <Grid container item 
       xs={12}
       direction="column" 
       justify="flex-start" 
       alignItems="center">
-        <Pay {...props.product.pay}/>
+      {!props.roomsLoading && <Pay {...props.product.pay}/>}
     </Grid>
     <Grid item xs={12} className={classes.buttonGrid}>
-      <Button variant="contained" color="primary" disabled={props.loading || !enableSubmit} className={classes.continueButton} onClick={onSubmit}>
+      <Button variant="contained" color="primary" disabled={props.roomsLoading || props.loading || !enableSubmit} className={classes.continueButton} onClick={onSubmit}>
         {props.loading ? <CircularProgress color="primary" size={25}/> :"Continuar"}
       </Button>
-      
     </Grid>
   </Grid>;
 }

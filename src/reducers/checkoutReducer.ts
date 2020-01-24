@@ -18,6 +18,7 @@ import {
 
 const initialState: Checkout = {
   loading: false,
+  roomsLoading: false,
   productId: "",
   error: {
     exists: false,
@@ -84,7 +85,8 @@ const initialState: Checkout = {
     },
     mealPlan: {
       code: "",
-      name: ""
+      name: "",
+      type: ""
     },
     room: {
       name: "",
@@ -95,7 +97,8 @@ const initialState: Checkout = {
     occupancy: {
       adults: 0,
       children: 0
-    }
+    },
+    roomsLoading: false
   }
 };
 

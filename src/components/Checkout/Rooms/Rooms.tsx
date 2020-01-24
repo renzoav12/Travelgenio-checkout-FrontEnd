@@ -1,7 +1,7 @@
-import React, { SFC } from 'react';
-import { Grid, Box } from '@material-ui/core';
+import React, { FunctionComponent } from 'react';
+import { Grid } from '@material-ui/core';
 import Paper from '@material-ui/core/Paper';
-import Room from './Room';
+import Room from './Room/Room';
 import { RoomGuest } from './Room/Room';
 
 export interface RoomsProps {
@@ -10,7 +10,8 @@ export interface RoomsProps {
   onChange: (guest: RoomGuest, index: number, isRoomValid: boolean) => void;
 }
 
-const Rooms: SFC<RoomsProps> = props => {
+const Rooms: FunctionComponent<RoomsProps> = props => {
+
   let rooms: Array<JSX.Element> = [];
   
   const room = (index: number, loading: boolean,
