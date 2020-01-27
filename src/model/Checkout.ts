@@ -12,5 +12,6 @@ export interface Checkout {
     productId: string;
     product: ProductProps;
     loading: boolean;
+    roomsLoading: boolean;
     error: CheckoutError;
 }

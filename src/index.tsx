@@ -6,10 +6,6 @@ import Root from './components/Root/root';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import CssBaseline from "@material-ui/core/CssBaseline";
 import './styles/fonts/fonts.scss';
-import { NONAME } from 'dns';
-import { SSL_OP_SINGLE_DH_USE } from 'constants';
-import { borderRadius } from '@material-ui/system';
-import { red } from '@material-ui/core/colors';
 
 const theme = createMuiTheme({
   palette: {
