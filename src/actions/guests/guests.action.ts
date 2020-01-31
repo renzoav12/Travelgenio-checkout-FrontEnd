@@ -63,6 +63,4 @@ export const guestsSave = () => async (
     } catch (e) {
         dispatch(guestsSaveFailed());
     }
-
-    dispatch(guestsSaveSuccess());
 };
