@@ -15,6 +15,7 @@ import {
   PRODUCT_UPDATE,
   PRODUCT_SEARCH
 } from '../actions/product/product.actionTypes';
+import { statSync } from 'fs';
 
 const initialState: Checkout = {
   loading: false,
@@ -97,6 +98,23 @@ const initialState: Checkout = {
     occupancy: {
       adults: 0,
       children: 0
+    },
+    extraCharges:{
+      total: {
+          currency: "",
+          amount: ""
+          
+        },
+      description: "",
+      details: [{ 
+            price: {
+                  amount: "",
+                  currency:""
+            },
+          type: "",
+          description: ""
+        }
+      ]
     },
     roomsLoading: false
   }

@@ -10,7 +10,9 @@ import TodayIcon from '@material-ui/icons/Today';
 import { PayProps } from '../Pay/Pay';
 import Occupancy from './Occupancy/Occupancy';
 import MealPlan from '../../MealPlan/MealPlan';
+import ExtraCharges from './ExtraCharges/ExtraCharges';
 import Skeleton from 'react-loading-skeleton';
+import { List } from 'lodash';
 
 export interface ProductProps {
   id: string;
@@ -23,6 +25,7 @@ export interface ProductProps {
   quantity: number;
   occupancy: Occupancy;
   roomsLoading: boolean;
+  extraCharges: ExtraCharges;
 }
 
 export interface Accommodation {
@@ -85,6 +88,23 @@ export interface Occupancy {
   children: number;
 }
 
+export interface ExtraCharges {
+  total: Price;
+  description: string;
+  details: [Charge];
+}
+
+export interface Price {
+  currency: string;
+  amount: string;
+}
+
+export interface Charge {
+  price: Price;
+  description: string;
+  type: string;
+}
+
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     cancelPolicy: {
@@ -99,6 +119,9 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     checkInOutTextPadding: {
       marginRight: 20
+    },
+    extracharge: {
+      marginRight: 5
     }
   }),
 );
@@ -147,7 +170,16 @@ const Product: FunctionComponent<ProductProps> = props => {
                     <Typography variant="h2" className={classes.checkInOutTextPadding}>Salida: {props.stay.checkOut.date}</Typography> 
                     <Box className={classes.checkInOutTextPadding}>{checkOutHour}</Box>
                   </Box>;
+  console.log("##############################");
+  console.log({...props});
+  console.log({...props.occupancy});
+  console.log({props});
+  console.log({...props});
 
+  const extracharges = <Box className={classes.extracharge}> 
+                          <ExtraCharges {...props.extraCharges} />
+                      </Box>;
+  
   return <Grid container>
     <Paper>
       <Grid container spacing={2}>
@@ -199,6 +231,9 @@ const Product: FunctionComponent<ProductProps> = props => {
               ? <Skeleton height={20} width={350}/>
               : checkout}
         </Grid>
+      </Grid>
+      <Grid>
+           {extracharges}
       </Grid>
     </Paper>
   </Grid>;
