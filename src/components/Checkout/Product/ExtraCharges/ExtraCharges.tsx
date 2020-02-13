@@ -19,7 +19,6 @@ export interface Charge {
 
 
 const ExtraCharges: SFC<ExtraChargesProps> = props => {
-    console.log(props.total);
     if (props.total != null){
         return (<span> {props.description} : {props.total.amount} {props.total.currency}</span> )
     }else{

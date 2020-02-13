@@ -170,11 +170,6 @@ const Product: FunctionComponent<ProductProps> = props => {
                     <Typography variant="h2" className={classes.checkInOutTextPadding}>Salida: {props.stay.checkOut.date}</Typography> 
                     <Box className={classes.checkInOutTextPadding}>{checkOutHour}</Box>
                   </Box>;
-  console.log("##############################");
-  console.log({...props});
-  console.log({...props.occupancy});
-  console.log({props});
-  console.log({...props});
 
   const extracharges = <Box className={classes.extracharge}> 
                           <ExtraCharges {...props.extraCharges} />
