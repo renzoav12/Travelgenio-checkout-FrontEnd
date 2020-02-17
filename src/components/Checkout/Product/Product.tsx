@@ -12,7 +12,6 @@ import Occupancy from './Occupancy/Occupancy';
 import MealPlan from '../../MealPlan/MealPlan';
 import ExtraCharges from './ExtraCharges/ExtraCharges';
 import Skeleton from 'react-loading-skeleton';
-import { List } from 'lodash';
 
 export interface ProductProps {
   id: string;
@@ -120,7 +119,7 @@ const useStyles = makeStyles((theme: Theme) =>
     checkInOutTextPadding: {
       marginRight: 20
     },
-    extracharge: {
+    extraCharge: {
       marginRight: 5
     }
   }),
@@ -171,7 +170,7 @@ const Product: FunctionComponent<ProductProps> = props => {
                     <Box className={classes.checkInOutTextPadding}>{checkOutHour}</Box>
                   </Box>;
 
-  const extracharges = <Box className={classes.extracharge}> 
+  const extracharges = <Box className={classes.extraCharge}> 
                           <ExtraCharges {...props.extraCharges} />
                       </Box>;
   
@@ -226,9 +225,9 @@ const Product: FunctionComponent<ProductProps> = props => {
               ? <Skeleton height={20} width={350}/>
               : checkout}
         </Grid>
-        <Grid item xs={12} sm={4} md={3} lg={2} xl={1}>
+        <Grid item xs={12}  md={3} lg={7} xl={9}>
         {props.roomsLoading 
-              ? <Skeleton height={20} width={150}/>
+              ? <Skeleton height={20} width={350}/>
               : extracharges}
         </Grid>  
       </Grid>

@@ -4,7 +4,7 @@ const dev = {
 };
 
 const prod = {
-    PRODUCT_API: 'https://hotels-autocomplete-product.travelagency.tech',
+    PRODUCT_API: 'https://dev-hotels-autocomplete-checkout.travelagency.tech',
     CHECKOUT_API: 'https://dev-hotels-shopping-checkout.travelagency.tech'
 };
 

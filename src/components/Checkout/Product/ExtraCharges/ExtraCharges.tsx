@@ -1,4 +1,5 @@
 import React, { FunctionComponent } from 'react';
+import { Box } from '@material-ui/core';
 
 export interface ExtraChargesProps {
     total: Price;
@@ -20,7 +21,7 @@ export interface Charge {
 
 const ExtraCharges: FunctionComponent<ExtraChargesProps> = props => {
     if (props.total != null){
-        return (<span> {props.description} : {props.total.amount} {props.total.currency}</span> )
+        return <Box >{props.description} </Box>
     }else{
         return null;
     }
