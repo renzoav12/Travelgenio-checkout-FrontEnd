@@ -226,11 +226,13 @@ const Product: FunctionComponent<ProductProps> = props => {
               ? <Skeleton height={20} width={350}/>
               : checkout}
         </Grid>
+        <Grid item xs={12} sm={4} md={3} lg={2} xl={1}>
+        {props.roomsLoading 
+              ? <Skeleton height={20} width={150}/>
+              : extracharges}
+        </Grid>  
       </Grid>
-      <Grid>
-           {extracharges}
-      </Grid>
-    </Paper>
+     </Paper>
   </Grid>;
 }
 

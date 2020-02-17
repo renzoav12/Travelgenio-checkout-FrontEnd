@@ -62,9 +62,6 @@ export const productFetch = (action: (product: ProductProps) => void) => async (
                 }
             }
         );
-        console.log("===================");
-        console.log(response);
-        console.log("===================");
         dispatch(action(response.data));
     } catch (e) {
         dispatch(productFetchFailed());

@@ -1,4 +1,4 @@
-import React, { SFC } from 'react';
+import React, { FunctionComponent } from 'react';
 
 export interface ExtraChargesProps {
     total: Price;
@@ -18,7 +18,7 @@ export interface Charge {
 }
 
 
-const ExtraCharges: SFC<ExtraChargesProps> = props => {
+const ExtraCharges: FunctionComponent<ExtraChargesProps> = props => {
     if (props.total != null){
         return (<span> {props.description} : {props.total.amount} {props.total.currency}</span> )
     }else{
