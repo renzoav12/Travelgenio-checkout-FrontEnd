@@ -1,5 +1,6 @@
 import axios from 'axios';
+import config from '../../config';
 
 export default axios.create({
-    baseURL: 'https://dev-hotels-shopping-product.travelagency.tech'
+    baseURL: config.PRODUCT_API
 });

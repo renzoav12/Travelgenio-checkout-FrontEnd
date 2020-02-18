@@ -10,6 +10,7 @@ import TodayIcon from '@material-ui/icons/Today';
 import { PayProps } from '../Pay/Pay';
 import Occupancy from './Occupancy/Occupancy';
 import MealPlan from '../../MealPlan/MealPlan';
+import ExtraCharges from './ExtraCharges/ExtraCharges';
 import Skeleton from 'react-loading-skeleton';
 
 export interface ProductProps {
@@ -23,6 +24,7 @@ export interface ProductProps {
   quantity: number;
   occupancy: Occupancy;
   roomsLoading: boolean;
+  extraCharges: ExtraCharges;
 }
 
 export interface Accommodation {
@@ -85,6 +87,23 @@ export interface Occupancy {
   children: number;
 }
 
+export interface ExtraCharges {
+  total: Price;
+  description: string;
+  details: [Charge];
+}
+
+export interface Price {
+  currency: string;
+  amount: string;
+}
+
+export interface Charge {
+  price: Price;
+  description: string;
+  type: string;
+}
+
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     cancelPolicy: {
@@ -99,6 +118,9 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     checkInOutTextPadding: {
       marginRight: 20
+    },
+    extraCharge: {
+      marginRight: 5
     }
   }),
 );
@@ -148,6 +170,10 @@ const Product: FunctionComponent<ProductProps> = props => {
                     <Box className={classes.checkInOutTextPadding}>{checkOutHour}</Box>
                   </Box>;
 
+  const extracharges = <Box className={classes.extraCharge}> 
+                          <ExtraCharges {...props.extraCharges} />
+                      </Box>;
+  
   return <Grid container>
     <Paper>
       <Grid container spacing={2}>
@@ -199,8 +225,13 @@ const Product: FunctionComponent<ProductProps> = props => {
               ? <Skeleton height={20} width={350}/>
               : checkout}
         </Grid>
+        <Grid item xs={12}  md={3} lg={5} xl={9}>
+        {props.roomsLoading 
+              ? <Skeleton height={20} width={320}/>
+              : extracharges}
+        </Grid>  
       </Grid>
-    </Paper>
+     </Paper>
   </Grid>;
 }
 
