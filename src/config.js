@@ -1,5 +1,5 @@
 const dev = {
-    PRODUCT_API: 'https://dev-hotels-autocomplete-product.travelagency.tech',
+    PRODUCT_API: 'https://dev-hotels-shopping-product.travelagency.tech',
     CHECKOUT_API: 'https://dev-hotels-shopping-checkout.travelagency.tech'
 };
 
