@@ -59,7 +59,7 @@ export const guestsSave = () => async (
             getState().checkout.guests
         );
         
-        window.location.replace("http://develop-hotelssite.int.travelgenio.tech/Hotel/Payment/es-ES/201/" + getState().checkout.product.id);
+        window.location.replace("http://develop-hotelssite.int.travelgenio.tech/hotels/payment/es-ES/201/" + getState().checkout.product.id);
     } catch (e) {
         dispatch(guestsSaveFailed());
     }
