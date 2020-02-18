@@ -225,9 +225,9 @@ const Product: FunctionComponent<ProductProps> = props => {
               ? <Skeleton height={20} width={350}/>
               : checkout}
         </Grid>
-        <Grid item xs={12}  md={3} lg={7} xl={9}>
+        <Grid item xs={12}  md={3} lg={5} xl={9}>
         {props.roomsLoading 
-              ? <Skeleton height={20} width={350}/>
+              ? <Skeleton height={20} width={320}/>
               : extracharges}
         </Grid>  
       </Grid>
