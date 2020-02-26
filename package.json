@@ -39,7 +39,7 @@
     "predeploy:dev": "REACT_APP_STAGE=dev yarn build",
     "deploy:dev": "aws s3 sync build/ s3://hotels-fe-dev/checkout/ --profile otravo --delete",
     "predeploy:prod": "REACT_APP_STAGE=prod yarn build",
-    "deploy:prod": "aws s3 sync build/ s3://hotels-fe-prod/checkout/ --profile otravo --delete",
+    "deploy:prod": "aws s3 sync build/ s3://hotels-fe-prod/checkout/ --profile otravo-prod --delete",
     "deployLB": "aws s3 sync build/ s3://otravo/checkout/ --profile my --delete --acl public-read",
     "deployCF": "aws s3 sync build/ s3://otravo-hotels-site/checkout/ --profile my --delete --acl public-read"
   },
