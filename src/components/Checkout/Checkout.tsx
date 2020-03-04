@@ -24,17 +24,24 @@ export interface CheckoutState {
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
+    product: {
+      marginTop:20
+    },
+    rooms: {
+      marginTop:20
+    },
+    pay: {
+      marginTop:20
+    },
     buttonGrid: {
       paddingTop: 20,
-      paddingBottom: 20,
-      paddingLeft: 20,
-      paddingRight: 20,
+      paddingBottom: 70,
       textAlign: "right"
     },
     continueButton: {
       width: "223px",
       height: "50px",
-    }
+    },
   }),
 );
 
@@ -64,17 +71,19 @@ const Checkout: FunctionComponent<CheckoutProps> = props => {
       xs={12}
       direction="column" 
       justify="flex-start" 
-      alignItems="center">
+      alignItems="center"
+      className = {classes.product}>
         <Product {...props.product} roomsLoading={props.roomsLoading}/>
     </Grid>
-    <Grid container item xs={12}>
+    <Grid container item xs={12} className = {classes.rooms}>
       {!props.roomsLoading && <Rooms quantity={props.product.quantity} loading={props.loading} onChange={onChange}/>}
     </Grid>
     <Grid container item 
       xs={12}
       direction="column" 
       justify="flex-start" 
-      alignItems="center">
+      alignItems="center"
+      className = {classes.pay}>
       {!props.roomsLoading && <Pay {...props.product.pay}/>}
     </Grid>
     <Grid item xs={12} className={classes.buttonGrid}>
