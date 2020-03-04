@@ -6,7 +6,6 @@ import Root from './components/Root/root';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import CssBaseline from "@material-ui/core/CssBaseline";
 import './styles/fonts/fonts.scss';
-
 import Header, { initialData as headerInitialData, countries, currencies } from '@hotels/header';
 import Footer, { initialData as footerInitialData, subscribeEmail } from '@hotels/footer';
 
@@ -41,10 +40,6 @@ const theme = createMuiTheme({
     MuiPaper: {
       root: {
         padding: 20,
-        marginTop: 20,
-        marginLeft: 20,
-        marginRight: 20,
-        width: "100%",
         borderStyle: "solid",
         border: "1px",
         borderColor: "#C0C6D1"
@@ -62,13 +57,20 @@ const theme = createMuiTheme({
       contained: {
         boxShadow: "none"
       }
+    },
+    MuiInputLabel: {
+      formControl: {
+        transform: 'translate(0, 18px) scale(1)'
+      }
     }
+    
   }
 })
 
 function App() {
   return (
     <MuiThemeProvider theme={theme}>
+      <CssBaseline />
       <Header initialData={headerInitialData} countries={countries} currencies={currencies} />
       <Root store={store} />
       <Footer initialData={footerInitialData} countries={countries} subscribeEmail={subscribeEmail}/>

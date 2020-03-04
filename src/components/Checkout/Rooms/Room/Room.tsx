@@ -1,4 +1,4 @@
-import React,  { SFC, useState } from 'react';
+import React,  { FunctionComponent, useState } from 'react';
 import { Grid, Typography, Hidden } from '@material-ui/core';
 import OtravoTextField from './OtravoTextField';
 import EmailField from './EmailField';
@@ -43,7 +43,7 @@ interface PhoneValidation {
 }
 
 
-const Room: SFC<RoomProps> = props => {
+const Room: FunctionComponent<RoomProps> = props => {
 
   const [guest, setGuest] = useState<GuestState>({
     guest: props.guest,
