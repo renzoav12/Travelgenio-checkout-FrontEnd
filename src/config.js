@@ -4,8 +4,8 @@ const dev = {
 };
 
 const prod = {
-    PRODUCT_API: 'https://hotels-shopping-product.travelagency.tech',
-    CHECKOUT_API: 'https://hotels-shopping-checkout.travelagency.tech'
+    PRODUCT_API: "https://" + window.location.hostname + "/hotels/api/",
+    CHECKOUT_API: "https://" + window.location.hostname + "/hotels/api/"
 };
 
 const config = process.env.REACT_APP_STAGE === 'prod'
