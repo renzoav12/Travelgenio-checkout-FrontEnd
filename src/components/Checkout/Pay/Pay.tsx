@@ -9,6 +9,7 @@ export interface PayProps {
 
 export interface Price {
   amount: string;
+  amountText: string;
   currency: string;
 }
 
@@ -30,7 +31,7 @@ const Pay: FunctionComponent<PayProps> = props => {
           <Typography variant="h1">Total a pagar</Typography>
         </Grid>
         <Grid item xs={6}>
-          <Typography variant="h1" align="right">{props.price.amount} {props.price.currency}</Typography>
+          <Typography variant="h1" align="right">{props.price.amountText} {props.price.currency}</Typography>
         </Grid>
       </Grid>
     </Paper>
