@@ -12,6 +12,7 @@ import { RoomGuest } from '../../components/Checkout/Rooms/Room/Room';
 import checkout from '../../api/checkout/checkout';
 import { ThunkAction } from 'redux-thunk';
 import { RootAction } from '../action';
+import config from '../../config';
 
 export type ThunkResult<R> = ThunkAction<R, RootState, undefined, RootAction>;
 
@@ -58,8 +59,7 @@ export const guestsSave = () => async (
             '/products/' + getState().checkout.product.id + '/guests',
             getState().checkout.guests
         );
-        
-        window.location.replace("http://develop-hotelssite.int.travelgenio.tech/hotels/payment/es-ES/201/" + getState().checkout.product.id);
+        window.location.replace(config.POST_CHECKOUT + getState().checkout.productId);
     } catch (e) {
         dispatch(guestsSaveFailed());
     }
