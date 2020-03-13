@@ -59,7 +59,7 @@ export const guestsSave = () => async (
             '/products/' + getState().checkout.product.id + '/guests',
             getState().checkout.guests
         );
-        window.location.replace(config.POST_CHECKOUT + getState().checkout.productId);
+        window.location.replace(config.CHECKOUT_TRAVELGENIO_PAGE + getState().checkout.productId);
     } catch (e) {
         dispatch(guestsSaveFailed());
     }
