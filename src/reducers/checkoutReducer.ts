@@ -51,7 +51,8 @@ const initialState: Checkout = {
     pay: {
       price: {
         amount: "",
-        currency: ""
+        currency: "",
+        amountText: ""
       }
     },
     accommodation: {
