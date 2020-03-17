@@ -77,7 +77,8 @@ const initialState: Checkout = {
       checkIn: {
         date: "",
         beginTime: "",
-        endTime: ""
+        endTime: "",
+        instructions: ""
       },
       checkOut: {
         date: "",
