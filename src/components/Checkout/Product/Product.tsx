@@ -10,6 +10,7 @@ import TodayIcon from '@material-ui/icons/Today';
 import { PayProps } from '../Pay/Pay';
 import Occupancy from './Occupancy/Occupancy';
 import MealPlan from '../../MealPlan/MealPlan';
+import Description from "./Description/Description";
 import ExtraCharges from './ExtraCharges/ExtraCharges';
 import Skeleton from 'react-loading-skeleton';
 
@@ -64,6 +65,7 @@ export interface CheckIn {
   date: string;
   beginTime: string;
   endTime: string;
+  instructions: string;
 }
 
 export interface CheckOut {
@@ -121,6 +123,9 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     extraCharge: {
       marginRight: 5
+    },
+    instructions: {
+      marginRight: 5
     }
   }),
 );
@@ -173,6 +178,12 @@ const Product: FunctionComponent<ProductProps> = props => {
   const extracharges = <Box className={classes.extraCharge}> 
                           <ExtraCharges {...props.extraCharges} />
                       </Box>;
+
+  const instructions = (
+    <Box className={classes.instructions}>
+      <Description text={props.stay.checkIn.instructions} />
+    </Box>
+  );
   
   return <Grid container>
     <Paper>
@@ -224,6 +235,13 @@ const Product: FunctionComponent<ProductProps> = props => {
           {props.roomsLoading 
               ? <Skeleton height={20} width={350}/>
               : checkout}
+        </Grid>
+        <Grid item xs={12}>
+            {props.roomsLoading ? (
+              <Skeleton height={20} width={350} />
+            ) : (
+              instructions
+            )}
         </Grid>
         <Grid item xs={12}  md={3} lg={5} xl={9}>
         {props.roomsLoading 
