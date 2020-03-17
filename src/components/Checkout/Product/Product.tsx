@@ -7,7 +7,7 @@ import LocationOnIcon from '@material-ui/icons/LocationOn';
 import KingBedIcon from '@material-ui/icons/KingBed';
 import PersonIcon from '@material-ui/icons/Person';
 import TodayIcon from '@material-ui/icons/Today';
-import { PayProps } from '../Pay/Pay';
+import { PayProps } from '../breakdown/Breakdown';
 import Occupancy from './Occupancy/Occupancy';
 import MealPlan from '../../MealPlan/MealPlan';
 import Description from "./Description/Description";
@@ -18,6 +18,7 @@ export interface ProductProps {
   id: string;
   accommodation: Accommodation;
   pay: PayProps;
+  breakdown: Breakdown;
   stay: Stay;
   mealPlan: MealPlan;
   cancelPolicy: string;
@@ -95,9 +96,15 @@ export interface ExtraCharges {
   details: [Charge];
 }
 
+export interface Breakdown {
+  tax: Price;
+  payWithoutTax: Price;
+}
+
 export interface Price {
   currency: string;
   amount: string;
+  amountText: string;
 }
 
 export interface Charge {

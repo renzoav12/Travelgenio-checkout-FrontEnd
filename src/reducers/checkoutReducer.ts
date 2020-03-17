@@ -101,17 +101,33 @@ const initialState: Checkout = {
       adults: 0,
       children: 0
     },
+    breakdown:{
+      tax:{
+        currency: "",
+        amount: "",
+        amountText: ""
+      },
+      payWithoutTax:{
+        currency: "",
+        amount: "",
+        amountText: ""
+      }
+
+    },
+
     extraCharges:{
       total: {
           currency: "",
-          amount: ""
+          amount: "",
+          amountText: ""
           
         },
       description: "",
       details: [{ 
             price: {
                   amount: "",
-                  currency:""
+                  currency:"",
+                  amountText: ""
             },
           type: "",
           description: ""

@@ -4,7 +4,7 @@ import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import { RoomGuest } from './Rooms/Room/Room';
 import Rooms from './Rooms/Rooms';
-import Pay from './Pay/Pay';
+import Breakdown from './breakdown/Breakdown';
 import Product, { ProductProps } from './Product/Product';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
@@ -84,7 +84,7 @@ const Checkout: FunctionComponent<CheckoutProps> = props => {
       justify="flex-start" 
       alignItems="center"
       className = {classes.pay}>
-      {!props.roomsLoading && <Pay {...props.product.pay}/>}
+      {!props.roomsLoading && <Breakdown {...props.product}/>}
     </Grid>
     <Grid item xs={12} className={classes.buttonGrid}>
       <Button variant="contained" color="primary" disabled={props.roomsLoading || props.loading || !enableSubmit} className={classes.continueButton} onClick={onSubmit}>
