@@ -3,6 +3,7 @@ import { Grid } from '@material-ui/core';
 import Paper from '@material-ui/core/Paper';
 import Room from './Room/Room';
 import { RoomGuest } from './Room/Room';
+import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 
 export interface RoomsProps {
   quantity: number;
@@ -10,13 +11,23 @@ export interface RoomsProps {
   onChange: (guest: RoomGuest, index: number, isRoomValid: boolean) => void;
 }
 
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    room: {
+      marginTop:20
+    }
+  }),
+);
+
 const Rooms: FunctionComponent<RoomsProps> = props => {
+
+  const classes = useStyles();
 
   let rooms: Array<JSX.Element> = [];
   
   const room = (index: number, loading: boolean,
       onChange: (guest: RoomGuest,
-      index: number, isRoomValid: boolean) => void) => <Paper key = {index}>
+      index: number, isRoomValid: boolean) => void) => <Paper key = {index} className={classes.room}>
     <Room
       guest={{name:"",
       lastName: "",

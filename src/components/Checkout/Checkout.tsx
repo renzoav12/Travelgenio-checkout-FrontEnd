@@ -27,9 +27,6 @@ const useStyles = makeStyles((theme: Theme) =>
     product: {
       marginTop:20
     },
-    rooms: {
-      marginTop:20
-    },
     pay: {
       marginTop:20
     },
@@ -75,7 +72,7 @@ const Checkout: FunctionComponent<CheckoutProps> = props => {
       className = {classes.product}>
         <Product {...props.product} roomsLoading={props.roomsLoading}/>
     </Grid>
-    <Grid container item xs={12} className = {classes.rooms}>
+    <Grid container item xs={12}>
       {!props.roomsLoading && <Rooms quantity={props.product.quantity} loading={props.loading} onChange={onChange}/>}
     </Grid>
     <Grid container item 
