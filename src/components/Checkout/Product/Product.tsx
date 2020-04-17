@@ -8,7 +8,7 @@ import KingBedIcon from '@material-ui/icons/KingBed';
 import PersonIcon from '@material-ui/icons/Person';
 import TodayIcon from '@material-ui/icons/Today';
 import Occupancy from './Occupancy/Occupancy';
-import MealPlan from '../../MealPlan/MealPlan';
+import MealPlan, { MealPlanProps } from '@hotels/mealplan';
 import Description from "./Description/Description";
 import ExtraCharges from './ExtraCharges/ExtraCharges';
 import Skeleton from 'react-loading-skeleton';
@@ -19,7 +19,7 @@ export interface ProductProps {
   pay: PayProps;
   breakdown: Breakdown;
   stay: Stay;
-  mealPlan: MealPlan;
+  mealPlan: MealPlanProps;
   cancelPolicy: string;
   room: Room;
   quantity: number;
@@ -73,11 +73,6 @@ export interface CheckOut {
   time: string;
 }
 
-export interface MealPlan {
-  code: string;
-  name: string;
-  type: string;
-}
 
 export interface Room {
   name: string;
