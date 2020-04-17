@@ -111,8 +111,19 @@ const initialState: Checkout = {
         currency: "",
         amount: "",
         amountText: ""
-      }
-
+      },
+      charges: [{
+        price: {
+          amount: "",
+          currency:"",
+          amountText: ""
+        },
+        type: {
+          code:"",
+          description:"",
+        },
+        description: ""
+      }]
     },
 
     extraCharges:{

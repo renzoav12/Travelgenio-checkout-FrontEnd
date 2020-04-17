@@ -7,7 +7,6 @@ import LocationOnIcon from '@material-ui/icons/LocationOn';
 import KingBedIcon from '@material-ui/icons/KingBed';
 import PersonIcon from '@material-ui/icons/Person';
 import TodayIcon from '@material-ui/icons/Today';
-import { PayProps } from '../breakdown/Breakdown';
 import Occupancy from './Occupancy/Occupancy';
 import MealPlan from '../../MealPlan/MealPlan';
 import Description from "./Description/Description";
@@ -99,6 +98,7 @@ export interface ExtraCharges {
 export interface Breakdown {
   tax: Price;
   payWithoutTax: Price;
+  charges: [BreakdownCharge];
 }
 
 export interface Price {
@@ -111,6 +111,21 @@ export interface Charge {
   price: Price;
   description: string;
   type: string;
+}
+
+export interface BreakdownCharge {
+  price: Price;
+  type: ChargeType;
+  description: string;
+}
+
+export interface ChargeType {
+  code: string;
+  description: string;
+}
+
+export interface PayProps {
+  price: Price;
 }
 
 const useStyles = makeStyles((theme: Theme) =>
