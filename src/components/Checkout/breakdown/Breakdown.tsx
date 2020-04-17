@@ -1,60 +1,67 @@
 import React, { FunctionComponent } from 'react';
-import { Grid, Typography, Box } from '@material-ui/core';
+import { Typography, Box } from '@material-ui/core';
 import Paper from '@material-ui/core/Paper';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
-import { ProductProps } from '../Product/Product';
-
-export interface PayProps {
-  price: Price;
-}
-
-export interface Price {
-  amount: string;
-  amountText: string;
-  currency: string;
-}
+import { ProductProps, BreakdownCharge } from '../Product/Product';
+import Occupancy from '../Product/Occupancy/Occupancy';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     paper: {
-      width: '100%'
-    }
+      width: "100%"
+    },
+    item: {
+      display: "flex",
+      justifyContent: "flex-end"
+    },
+    itemLabel: {
+    },
+    itemPrice: {
+      width: 150,
+      textAlign: "right"
+    },
+    total: {
+      display: "flex",
+      justifyContent: "flex-end",
+      marginTop: 10,
+      paddingTop: 10,
+      borderTopWidth: 1,
+      borderTopStyle: "solid",
+      borderTopColor: theme.palette.divider
+    },
+    totalLabel: {
+    },
+    totalPrice: {
+      width: 150,
+      textAlign: "right"
+    },
   }),
 );
 
 const Breakdown: FunctionComponent<ProductProps> = props => {
   const classes = useStyles();
 
-  return <Grid container>
-    <Paper className={classes.paper}>
-      <Grid container>
-        <Grid item xs={6}>
-          <Typography variant="subtitle1">{props.stay.nights} noches</Typography>
-        </Grid>
-        <Grid item xs={6}>
-          <Typography variant="subtitle1" align="right">{props.breakdown.payWithoutTax.amountText} {props.breakdown.payWithoutTax.currency}</Typography>
-        </Grid>
-      </Grid>
+  const baseRateCharge: BreakdownCharge = props.breakdown.charges.filter(charge => charge.type.code === "BASE_RATE" )[0];
+  const otherCharges: Array<BreakdownCharge> = props.breakdown.charges.filter(charge => charge.type.code !== "BASE_RATE" );
 
-      <Grid container>
-        <Grid item xs={6}>
-          <Typography variant="subtitle1">Impuestos</Typography>
-        </Grid>
-        <Grid item xs={6}>
-          <Typography variant="subtitle1" align="right">{props.breakdown.tax.amountText} {props.breakdown.tax.currency}</Typography>
-        </Grid>
-      </Grid>
+  const baseRate: JSX.Element | null =  baseRateCharge ? <Box className={classes.item}>
+    <Typography variant="subtitle1" className={classes.itemLabel}>Tarifa</Typography>
+    <Typography variant="subtitle1" className={classes.itemPrice}>{baseRateCharge.price.amountText} {baseRateCharge.price.currency}</Typography>
+  </Box> : null;
 
-      <Grid container>
-        <Grid item xs={6}>
-          <Typography variant="h1">Total a pagar</Typography>
-        </Grid>
-        <Grid item xs={6}>
-          <Typography variant="h1" align="right">{props.pay.price.amountText} {props.pay.price.currency}</Typography>
-        </Grid>
-      </Grid>
-    </Paper>
-  </Grid>;
+  const charges: Array<JSX.Element> = otherCharges.map((charge, index) => { return <Box className={classes.item} key={index}>
+      <Typography variant="subtitle2" className={classes.itemLabel}>{charge.type.description}</Typography>
+      <Typography variant="subtitle2" className={classes.itemPrice}>{charge.price.amountText} {charge.price.currency}</Typography>
+    </Box>});
+
+  return <Paper className={classes.paper}>
+      {baseRate}
+      {charges}
+      <Box className={classes.total}>
+        <Typography variant="h1" className={classes.totalLabel}>Total a pagar</Typography>
+        <Typography variant="h1" className={classes.totalPrice}>{props.pay.price.amountText} {props.pay.price.currency}</Typography>
+      </Box>
+  </Paper>;
 }
 
 export default Breakdown;
