@@ -3,7 +3,6 @@ import { Typography, Box } from '@material-ui/core';
 import Paper from '@material-ui/core/Paper';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import { ProductProps, BreakdownCharge } from '../Product/Product';
-import Occupancy from '../Product/Occupancy/Occupancy';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
