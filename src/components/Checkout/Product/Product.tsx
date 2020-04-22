@@ -5,9 +5,8 @@ import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import Category from '../../Category/Category';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 import KingBedIcon from '@material-ui/icons/KingBed';
-import PersonIcon from '@material-ui/icons/Person';
 import TodayIcon from '@material-ui/icons/Today';
-import Occupancy from './Occupancy/Occupancy';
+import Occupancy from '@hotels/occupancy';
 import MealPlan, { MealPlanProps } from '@hotels/mealplan';
 import Description from "./Description/Description";
 import ExtraCharges from './ExtraCharges/ExtraCharges';
@@ -22,6 +21,7 @@ export interface ProductProps {
   mealPlan: MealPlanProps;
   cancelPolicy: string;
   room: Room;
+  rooms: Array<RoomOccupancies>;
   quantity: number;
   occupancy: Occupancy;
   roomsLoading: boolean;
@@ -73,6 +73,32 @@ export interface CheckOut {
   time: string;
 }
 
+export interface BedGroup {
+  description: string;
+}
+
+export interface Occupancies {
+  description: string;
+  children: Ages;
+}
+
+export interface Ages {
+   totals: number;
+   description: string;
+   ages: AgesExport;
+}
+
+export interface AgesExport {
+  description: string;
+}
+
+export interface RoomOccupancies {
+  name: string;
+  description: string;
+  quantity: number;
+  bedGroup: BedGroup;
+  occupancy: Occupancies;
+}
 
 export interface Room {
   name: string;
@@ -143,6 +169,10 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     instructions: {
       marginRight: 5
+    },
+    iconRoom: {
+      paddingLeft: 9,
+      paddingTop: 11
     }
   }),
 );
@@ -156,9 +186,9 @@ const Product: FunctionComponent<ProductProps> = props => {
   const classes = useStyles();
 
   const checkInHour = () => {
-    if(props.stay.checkIn.beginTime == begin24Hours && props.stay.checkIn.endTime == end24Hours) {
+    if(props.stay.checkIn.beginTime === begin24Hours && props.stay.checkIn.endTime === end24Hours) {
       return <Box> Las 24 Hs.</Box>;  
-    } else if(props.stay.checkIn.beginTime && props.stay.checkIn.endTime && props.stay.checkIn.beginTime != props.stay.checkIn.endTime) {
+    } else if(props.stay.checkIn.beginTime && props.stay.checkIn.endTime && props.stay.checkIn.beginTime !== props.stay.checkIn.endTime) {
       return <Box>A partir de {props.stay.checkIn.beginTime} Hs. a {props.stay.checkIn.endTime} Hs.</Box>;
     } else if(props.stay.checkIn.beginTime) {
       return <Box>A partir de {props.stay.checkIn.beginTime} Hs.</Box>
@@ -174,11 +204,15 @@ const Product: FunctionComponent<ProductProps> = props => {
     return <Box>{checkoutTime}</Box>;
   }
 
+  const getDescription = (room: RoomOccupancies) =>{
+    let addAges = room.occupancy.children.totals > 0 ? " de " + room.occupancy.children.ages.description + " años.": "";
+    let occupancyDesc= room.occupancy.description + addAges; 
+    return occupancyDesc + " + " + room.bedGroup.description;
+  }
+
   const location = <Box><LocationOnIcon fontSize="small"/> {props.accommodation.location.address}</Box>;
 
-  const room = <Box><KingBedIcon fontSize="small"/>{props.quantity} habitaciones. {props.room.description}</Box>;
-
-  const occupancy = <Box><PersonIcon fontSize="small"/> <Occupancy {...props.occupancy}/> | Estancia de {props.stay.nights} noches.</Box>;
+  const room = <Box><KingBedIcon fontSize="small"/></Box>; 
 
   const checkin = <Box className={classes.checkInOut}>
                     <Box className={classes.checkInOutIconPadding}><TodayIcon fontSize="small"/></Box>
@@ -233,7 +267,7 @@ const Product: FunctionComponent<ProductProps> = props => {
               ? <Skeleton height={20} width={350}/>
               : location}
         </Grid>      
-        <Grid item xs={12} sm={4} md={3} lg={2} xl={1}>
+        <Grid className={classes.iconRoom}>
         {props.roomsLoading 
               ? <Skeleton height={20} width={150}/>
               : room}
@@ -241,7 +275,10 @@ const Product: FunctionComponent<ProductProps> = props => {
         <Grid item xs={12}  sm={8} md={9} lg={10} xl={11}>
           {props.roomsLoading 
               ? <Skeleton height={20} width={200}/>
-              : occupancy}
+          : <Grid> <Box> Estancia de {props.stay.nights} dias :</Box>  {props.rooms?.map((room,index) => <Grid item xs={12} key={index}>
+                  <Occupancy adults= {0} childrenAges={[]} description={getDescription(room)} 
+                             showText={true}></Occupancy>
+          </Grid>)}</Grid>}
         </Grid>
         <Grid item xs={12} md={6} lg={5} xl={3}>
           {props.roomsLoading 

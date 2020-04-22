@@ -1,4 +1,4 @@
-import _ from 'lodash';
+
 import { Reducer } from 'redux';
 import { RootAction } from '../actions/action';
 import { Checkout } from '../model/Checkout';
@@ -15,7 +15,6 @@ import {
   PRODUCT_UPDATE,
   PRODUCT_SEARCH
 } from '../actions/product/product.actionTypes';
-import { statSync } from 'fs';
 
 const initialState: Checkout = {
   loading: false,
@@ -95,6 +94,7 @@ const initialState: Checkout = {
       name: "",
       description: ""
     },
+    rooms: [],
     cancelPolicy: "",
     quantity: 0,
     occupancy: {
