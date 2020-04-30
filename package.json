@@ -33,6 +33,7 @@
     "react-image": "2.4.0",
     "react-scripts": "3.4.0",
     "redux-thunk": "2.3.0",
+    "redux-i18n": "^1.5.19",
     "typescript": "3.7.5"
   },
   "scripts": {
