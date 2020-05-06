@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import TextField from '@material-ui/core/TextField';
+import Translate from '@hotels/translation';
+import Keys from '@hotels/translation-keys';
 
 export interface OtravoFieldProps {
   id: string;
-  label: string;
+  label: JSX.Element;
   value?: string;
   required?: boolean;
   maxLength?: number;
@@ -46,10 +48,10 @@ class OtravoField extends Component<OtravoFieldProps, OtravoFieldState> {
     let error = false;
 
     if(this.isEmpty(value)) {
-      errorMessage = "El campo es requerido.";
+      errorMessage = Keys.checkout.error_contact_field_empty;
       error = true;
     } else if(this.isInvalidFormat(value)) {
-      errorMessage = "El formato es incorrecto.";
+      errorMessage = Keys.checkout.error_contact_format_incorrect;
       error = true;
     }
 

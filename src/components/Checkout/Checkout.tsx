@@ -7,6 +7,8 @@ import Rooms from './Rooms/Rooms';
 import Breakdown from './breakdown/Breakdown';
 import Product, { ProductProps } from './Product/Product';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import Keys from "@hotels/translation-keys";
+import Translate from "@hotels/translation";
 
 export interface CheckoutProps {
   product: ProductProps;
@@ -85,7 +87,7 @@ const Checkout: FunctionComponent<CheckoutProps> = props => {
     </Grid>
     <Grid item xs={12} className={classes.buttonGrid}>
       <Button variant="contained" color="primary" disabled={props.roomsLoading || props.loading || !enableSubmit} className={classes.continueButton} onClick={onSubmit}>
-        {props.loading ? <CircularProgress color="primary" size={25}/> :"Continuar"}
+        {props.loading ? <CircularProgress color="primary" size={25}/> : <Translate tkey={Keys.checkout.room_check_out_continue}/>}
       </Button>
     </Grid>
   </Grid>;

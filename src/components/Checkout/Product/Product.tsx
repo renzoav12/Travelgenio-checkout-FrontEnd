@@ -11,6 +11,8 @@ import MealPlan, { MealPlanProps } from '@hotels/mealplan';
 import Description from "./Description/Description";
 import ExtraCharges from './ExtraCharges/ExtraCharges';
 import Skeleton from 'react-loading-skeleton';
+import Keys from "@hotels/translation-keys";
+import Translation from "@hotels/translation";
 
 export interface ProductProps {
   id: string;
@@ -180,32 +182,33 @@ const useStyles = makeStyles((theme: Theme) =>
 const Product: FunctionComponent<ProductProps> = props => {
   const begin24Hours = "00:00";
   const end24Hours = "23:59";
-  const noneCheckinHour = "El alojamiento no informa sobre hora de checkin.";
-  const noneCheckoutHour = "El alojamiento no informa sobre hora de checkout.";
+  const noneCheckinHour = <Translation tkey={Keys.common.accommodation_not_check_in}/>;
+  const noneCheckoutHour = <Translation tkey={Keys.common.accommodation_not_check_out}/>;
 
   const classes = useStyles();
 
   const checkInHour = () => {
     if(props.stay.checkIn.beginTime === begin24Hours && props.stay.checkIn.endTime === end24Hours) {
-      return <Box> Las 24 Hs.</Box>;  
+      return <Box> <Translation tkey={Keys.common.accommodation_check_in_24hs}/></Box>;  
     } else if(props.stay.checkIn.beginTime && props.stay.checkIn.endTime && props.stay.checkIn.beginTime !== props.stay.checkIn.endTime) {
-      return <Box>A partir de {props.stay.checkIn.beginTime} Hs. a {props.stay.checkIn.endTime} Hs.</Box>;
+      return <Box><Translation tkey={Keys.common.accommodation_check_in_from_to} values={{n:props.stay.checkIn.beginTime ,m:props.stay.checkIn.endTime}}/></Box>;
     } else if(props.stay.checkIn.beginTime) {
-      return <Box>A partir de {props.stay.checkIn.beginTime} Hs.</Box>
+      return <Box><Translation tkey={Keys.common.accommodation_check_in_from} values={{n:props.stay.checkIn.beginTime}}/></Box>
     } else if(props.stay.checkIn.endTime) {
-      return <Box>Hasta las {props.stay.checkIn.endTime} Hs.</Box>
+      return <Box><Translation tkey={Keys.common.accommodation_check_in_until} values={{n:props.stay.checkIn.endTime}}/></Box>
     } else {
       return <Box>{noneCheckinHour}</Box>;
     }
   }
   
   const checkOutHour = () => {
-    let checkoutTime = props.stay.checkOut && props.stay.checkOut.time ? `Hasta las ${props.stay.checkOut.time} Hs.` : noneCheckoutHour;
+    let checkoutTime = props.stay.checkOut && props.stay.checkOut.time ? <Translation tkey={Keys.common.accommodation_check_in_until} values={{n:props.stay.checkOut.time}}/>
+    : noneCheckoutHour;
     return <Box>{checkoutTime}</Box>;
   }
 
   const getDescription = (room: RoomOccupancies) =>{
-    let addAges = room.occupancy.children.totals > 0 ? " de " + room.occupancy.children.ages.description + " años.": "";
+    let addAges = room.occupancy.children.totals > 0 ? <Translation tkey={Keys.checkout.occupancy_years} values={{n:room.occupancy.children.ages.description}} /> : "";
     let occupancyDesc= room.occupancy.description + addAges; 
     return occupancyDesc + " + " + room.bedGroup.description;
   }
@@ -216,13 +219,15 @@ const Product: FunctionComponent<ProductProps> = props => {
 
   const checkin = <Box className={classes.checkInOut}>
                     <Box className={classes.checkInOutIconPadding}><TodayIcon fontSize="small"/></Box>
-                    <Typography variant="h2" className={classes.checkInOutTextPadding}>Entrada: {props.stay.checkIn.date}</Typography> 
+                    <Typography variant="h2" className={classes.checkInOutTextPadding}>
+                      <Translation tkey={Keys.common.accommodation_check_in}/>{props.stay.checkIn.date}</Typography> 
                     <Box className={classes.checkInOutTextPadding}>{checkInHour}</Box>
                   </Box>;
 
   const checkout = <Box className={classes.checkInOut}>
                     <Box className={classes.checkInOutIconPadding}><TodayIcon fontSize="small"/></Box>
-                    <Typography variant="h2" className={classes.checkInOutTextPadding}>Salida: {props.stay.checkOut.date}</Typography> 
+                    <Typography variant="h2" className={classes.checkInOutTextPadding}>
+                      <Translation tkey={Keys.common.accommodation_check_out}/>{props.stay.checkOut.date}</Typography> 
                     <Box className={classes.checkInOutTextPadding}>{checkOutHour}</Box>
                   </Box>;
 
@@ -240,7 +245,7 @@ const Product: FunctionComponent<ProductProps> = props => {
     <Paper>
       <Grid container spacing={2}>
         <Grid item xs={12}>
-          <Typography variant="h1">Tu selección</Typography>
+          <Typography variant="h1"><Translation tkey={Keys.checkout.your_selection}/></Typography>
         </Grid>
         <Grid container item xs={12} alignItems="center" spacing={1}>
           <Grid item>
@@ -275,7 +280,8 @@ const Product: FunctionComponent<ProductProps> = props => {
         <Grid item xs={12}  sm={8} md={9} lg={10} xl={11}>
           {props.roomsLoading 
               ? <Skeleton height={20} width={200}/>
-          : <Grid> <Box> Estancia de {props.stay.nights} dias :</Box>  {props.rooms?.map((room,index) => <Grid item xs={12} key={index}>
+          : <Grid><Box><Translation tkey={Keys.checkout.stay_of_day} quantity={props.stay.nights} values={{n:props.stay.nights}}/>
+          </Box>  {props.rooms?.map((room,index) => <Grid item xs={12} key={index}>
                   <Occupancy adults= {0} childrenAges={[]} description={getDescription(room)} 
                              showText={true}></Occupancy>
           </Grid>)}</Grid>}
