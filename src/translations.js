@@ -1,8 +1,6 @@
 export default {
     es: {
         total_to_pay:"Total a Pagar",
-        accommodation_checkin: "Entrada:  ",
-        accommodation_checkout: "Salida: ",
         your_selection: "Tu selección",
         stay_of_day_pl: "Estancia de {n} dias :",
         stay_of_day : "Estancia de {n} dia :",
