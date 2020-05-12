@@ -208,7 +208,7 @@ const Product: FunctionComponent<ProductProps> = props => {
   }
 
   const getDescription = (room: RoomOccupancies) =>{
-    let addAges = room.occupancy.children.totals > 0 ? <Translation tkey={Keys.checkout.occupancy_years} values={{n:room.occupancy.children.ages.description}} /> : "";
+    let addAges = room.occupancy.children.totals > 0 ? <Translation tkey={Keys.checkout.occupancy_year} values={{n:room.occupancy.children.ages.description}} /> : "";
     let occupancyDesc= room.occupancy.description + addAges; 
     return occupancyDesc + " + " + room.bedGroup.description;
   }
@@ -280,7 +280,7 @@ const Product: FunctionComponent<ProductProps> = props => {
         <Grid item xs={12}  sm={8} md={9} lg={10} xl={11}>
           {props.roomsLoading 
               ? <Skeleton height={20} width={200}/>
-          : <Grid><Box><Translation tkey={Keys.checkout.stay_of_day} quantity={props.stay.nights} values={{n:props.stay.nights}}/>
+          : <Grid><Box><Translation tkey={Keys.checkout.stay_of_x_day} quantity={props.stay.nights} values={{n:props.stay.nights}}/>
           </Box>  {props.rooms?.map((room,index) => <Grid item xs={12} key={index}>
                   <Occupancy adults= {0} childrenAges={[]} description={getDescription(room)} 
                              showText={true}></Occupancy>

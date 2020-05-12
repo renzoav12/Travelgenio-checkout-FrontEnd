@@ -46,7 +46,7 @@ const Breakdown: FunctionComponent<ProductProps> = props => {
   const otherCharges: Array<BreakdownCharge> = props.breakdown.charges.filter(charge => charge.type.code !== "BASE_RATE" );
 
   const baseRate: JSX.Element | null =  baseRateCharge ? <Box className={classes.item}>
-    <Typography variant="subtitle1" className={classes.itemLabel}>Tarifa</Typography>
+    <Typography variant="subtitle1" className={classes.itemLabel}><Translation tkey={Keys.checkout.rate}/></Typography>
     <Typography variant="subtitle1" className={classes.itemPrice}>{baseRateCharge.price.amountText} {baseRateCharge.price.currency}</Typography>
   </Box> : null;
 

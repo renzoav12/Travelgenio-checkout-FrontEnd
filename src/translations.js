@@ -1,7 +1,7 @@
 export default {
     es: {
-        total_to_pay:"Total a Pagar",
-        your_selection: "Tu selección",
+        "total.to.pay":"Total a Pagar",
+        "your.selection": "Tu selección",
         stay_of_day_pl: "Estancia de {n} dias :",
         stay_of_day : "Estancia de {n} dia :",
         occupancy_year: " de {n} año/s.",

@@ -87,7 +87,7 @@ const Checkout: FunctionComponent<CheckoutProps> = props => {
     </Grid>
     <Grid item xs={12} className={classes.buttonGrid}>
       <Button variant="contained" color="primary" disabled={props.roomsLoading || props.loading || !enableSubmit} className={classes.continueButton} onClick={onSubmit}>
-        {props.loading ? <CircularProgress color="primary" size={25}/> : <Translate tkey={Keys.checkout.room_check_out_continue}/>}
+        {props.loading ? <CircularProgress color="primary" size={25}/> : <Translate tkey={Keys.checkout.continue}/>}
       </Button>
     </Grid>
   </Grid>;

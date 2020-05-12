@@ -19,11 +19,15 @@ export interface OtravoFieldState {
   errorMessage: String;
 }
 
+export interface Props {
+  otravoField: OtravoFieldProps;
+  otravoFiledState: OtravoFieldState;
+}
 
-class OtravoField extends Component<OtravoFieldProps, OtravoFieldState> {
+
+class OtravoField extends Component<OtravoFieldProps, OtravoFieldState>  {
   constructor(props) {
     super(props);
-
     this.state = { 
       error: props.error ? props.error : false,
       errorMessage: props.errorMessage ? props.errorMessage : ""
@@ -48,10 +52,10 @@ class OtravoField extends Component<OtravoFieldProps, OtravoFieldState> {
     let error = false;
 
     if(this.isEmpty(value)) {
-      errorMessage = Keys.checkout.error_contact_field_empty;
+      errorMessage = Keys.checkout.format_is_invalid;
       error = true;
     } else if(this.isInvalidFormat(value)) {
-      errorMessage = Keys.checkout.error_contact_format_incorrect;
+      errorMessage = Keys.checkout.field_is_required;
       error = true;
     }
 
