@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, ContextType} from 'react';
 import TextField from '@material-ui/core/TextField';
 import {translate} from '@hotels/translation';
 import Keys from '@hotels/translation-keys';
@@ -27,6 +27,10 @@ export interface Props {
 
 
 class OtravoField extends Component<OtravoFieldProps, OtravoFieldState>  {
+  context: ContextType<any>;
+  static contextTypes = {
+    t: PropTypes.func
+  }
   constructor(props) {
     super(props);
     this.state = { 
