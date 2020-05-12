@@ -220,14 +220,14 @@ const Product: FunctionComponent<ProductProps> = props => {
   const checkin = <Box className={classes.checkInOut}>
                     <Box className={classes.checkInOutIconPadding}><TodayIcon fontSize="small"/></Box>
                     <Typography variant="h2" className={classes.checkInOutTextPadding}>
-                      <Translation tkey={Keys.common.accommodation_check_in}/>{props.stay.checkIn.date}</Typography> 
+                      <Translation tkey={Keys.common.accommodation_check_in}/>: {props.stay.checkIn.date}</Typography> 
                     <Box className={classes.checkInOutTextPadding}>{checkInHour}</Box>
                   </Box>;
 
   const checkout = <Box className={classes.checkInOut}>
                     <Box className={classes.checkInOutIconPadding}><TodayIcon fontSize="small"/></Box>
                     <Typography variant="h2" className={classes.checkInOutTextPadding}>
-                      <Translation tkey={Keys.common.accommodation_check_out}/>{props.stay.checkOut.date}</Typography> 
+                      <Translation tkey={Keys.common.accommodation_check_out}/>: {props.stay.checkOut.date}</Typography> 
                     <Box className={classes.checkInOutTextPadding}>{checkOutHour}</Box>
                   </Box>;
 
