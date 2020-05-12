@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import TextField from '@material-ui/core/TextField';
-import Translate from '@hotels/translation';
+import {translate} from '@hotels/translation';
 import Keys from '@hotels/translation-keys';
+import PropTypes from "prop-types";
 
 export interface OtravoFieldProps {
   id: string;
@@ -52,10 +53,10 @@ class OtravoField extends Component<OtravoFieldProps, OtravoFieldState>  {
     let error = false;
 
     if(this.isEmpty(value)) {
-      errorMessage = Keys.checkout.format_is_invalid;
+      errorMessage = translate(this.context,Keys.checkout.format_is_invalid);
       error = true;
     } else if(this.isInvalidFormat(value)) {
-      errorMessage = Keys.checkout.field_is_required;
+      errorMessage = translate(this.context,Keys.checkout.field_is_required);
       error = true;
     }
 
@@ -94,5 +95,4 @@ class OtravoField extends Component<OtravoFieldProps, OtravoFieldState>  {
           />;
   }
 }
-
 export default OtravoField;
