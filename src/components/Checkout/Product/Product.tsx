@@ -12,7 +12,9 @@ import Description from "./Description/Description";
 import ExtraCharges from './ExtraCharges/ExtraCharges';
 import Skeleton from 'react-loading-skeleton';
 import Keys from "@hotels/translation-keys";
-import Translation from "@hotels/translation";
+import Translation, {translate} from "@hotels/translation";
+import PropTypes from "prop-types";
+
 
 export interface ProductProps {
   id: string;
@@ -179,7 +181,7 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-const Product: FunctionComponent<ProductProps> = props => {
+const Product: FunctionComponent<ProductProps> = (props, context) => {
   const begin24Hours = "00:00";
   const end24Hours = "23:59";
   const noneCheckinHour = <Translation tkey={Keys.common.accommodation_not_check_in}/>;
@@ -208,8 +210,8 @@ const Product: FunctionComponent<ProductProps> = props => {
   }
 
   const getDescription = (room: RoomOccupancies) =>{
-    let addAges = room.occupancy.children.totals > 0 ? <Translation tkey={Keys.checkout.occupancy_year} values={{n:room.occupancy.children.ages.description}} /> : "";
-    let occupancyDesc= room.occupancy.description + addAges; 
+    let addAges = room.occupancy.children.totals > 0 ? "*" + room.occupancy.children.ages.description : "*0";
+    let occupancyDesc= room.occupancy.description + addAges;
     return occupancyDesc + " + " + room.bedGroup.description;
   }
 
@@ -280,10 +282,9 @@ const Product: FunctionComponent<ProductProps> = props => {
         <Grid item xs={12}  sm={8} md={9} lg={10} xl={11}>
           {props.roomsLoading 
               ? <Skeleton height={20} width={200}/>
-          : <Grid><Box><Translation tkey={Keys.checkout.stay_of_x_day} quantity={props.stay.nights} values={{n:props.stay.nights}}/>
+          : <Grid><Box><Translation tkey={Keys.checkout.stay_of_x_day} quantity={props.stay.nights} values={{x:props.stay.nights}}/>
           </Box>  {props.rooms?.map((room,index) => <Grid item xs={12} key={index}>
-                  <Occupancy adults= {0} childrenAges={[]} description={getDescription(room)} 
-                             showText={true}></Occupancy>
+                  <Occupancy adults= {0} childrenAges={[]} description={getDescription(room)} showText={true}></Occupancy>
           </Grid>)}</Grid>}
         </Grid>
         <Grid item xs={12} md={6} lg={5} xl={3}>
@@ -312,5 +313,6 @@ const Product: FunctionComponent<ProductProps> = props => {
      </Paper>
   </Grid>;
 }
+Product.contextTypes = { t: PropTypes.func };
 
 export default Product;

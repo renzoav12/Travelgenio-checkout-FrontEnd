@@ -5,11 +5,10 @@ import {history} from '../../history';
 import { getRoutes } from './root.routes';
 import { ConnectedRouter } from 'connected-react-router';
 import I18n from 'redux-i18n';
-import translations from "./../../translations";
 
 const Root = ({ store }) => (
   <Provider store={store}>
-  <I18n translations={translations} initialLang="es">
+  <I18n translations={{}} useReducer="true">
       <ConnectedRouter history={history}>{getRoutes()}</ConnectedRouter>
   </I18n>
   </Provider>
