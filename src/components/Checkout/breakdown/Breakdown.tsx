@@ -3,6 +3,8 @@ import { Typography, Box } from '@material-ui/core';
 import Paper from '@material-ui/core/Paper';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import { ProductProps, BreakdownCharge } from '../Product/Product';
+import Keys from "@hotels/translation-keys";
+import Translation from "@hotels/translation";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -44,7 +46,7 @@ const Breakdown: FunctionComponent<ProductProps> = props => {
   const otherCharges: Array<BreakdownCharge> = props.breakdown.charges.filter(charge => charge.type.code !== "BASE_RATE" );
 
   const baseRate: JSX.Element | null =  baseRateCharge ? <Box className={classes.item}>
-    <Typography variant="subtitle1" className={classes.itemLabel}>Tarifa</Typography>
+    <Typography variant="subtitle1" className={classes.itemLabel}><Translation tkey={Keys.checkout.rate}/></Typography>
     <Typography variant="subtitle1" className={classes.itemPrice}>{baseRateCharge.price.amountText} {baseRateCharge.price.currency}</Typography>
   </Box> : null;
 
@@ -57,7 +59,7 @@ const Breakdown: FunctionComponent<ProductProps> = props => {
       {baseRate}
       {charges}
       <Box className={classes.total}>
-        <Typography variant="h1" className={classes.totalLabel}>Total a pagar</Typography>
+        <Typography variant="h1" className={classes.totalLabel}><Translation tkey={Keys.checkout.total_to_pay}/></Typography>
         <Typography variant="h1" className={classes.totalPrice}>{props.pay.price.amountText} {props.pay.price.currency}</Typography>
       </Box>
   </Paper>;

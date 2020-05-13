@@ -1,9 +1,12 @@
-import React, { Component } from 'react';
+import React, { Component, ContextType} from 'react';
 import TextField from '@material-ui/core/TextField';
+import {translate} from '@hotels/translation';
+import Keys from '@hotels/translation-keys';
+import PropTypes from "prop-types";
 
 export interface OtravoFieldProps {
   id: string;
-  label: string;
+  label: JSX.Element;
   value?: string;
   required?: boolean;
   maxLength?: number;
@@ -17,11 +20,19 @@ export interface OtravoFieldState {
   errorMessage: String;
 }
 
+export interface Props {
+  otravoField: OtravoFieldProps;
+  otravoFiledState: OtravoFieldState;
+}
 
-class OtravoField extends Component<OtravoFieldProps, OtravoFieldState> {
+
+class OtravoField extends Component<OtravoFieldProps, OtravoFieldState>  {
+  context: ContextType<any>;
+  static contextTypes = {
+    t: PropTypes.func
+  }
   constructor(props) {
     super(props);
-
     this.state = { 
       error: props.error ? props.error : false,
       errorMessage: props.errorMessage ? props.errorMessage : ""
@@ -46,10 +57,10 @@ class OtravoField extends Component<OtravoFieldProps, OtravoFieldState> {
     let error = false;
 
     if(this.isEmpty(value)) {
-      errorMessage = "El campo es requerido.";
+      errorMessage = translate(this.context,Keys.checkout.format_is_invalid);
       error = true;
     } else if(this.isInvalidFormat(value)) {
-      errorMessage = "El formato es incorrecto.";
+      errorMessage = translate(this.context,Keys.checkout.field_is_required);
       error = true;
     }
 
@@ -88,5 +99,4 @@ class OtravoField extends Component<OtravoFieldProps, OtravoFieldState> {
           />;
   }
 }
-
 export default OtravoField;

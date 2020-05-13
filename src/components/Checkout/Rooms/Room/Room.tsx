@@ -3,6 +3,10 @@ import { Grid, Typography, Hidden } from '@material-ui/core';
 import OtravoTextField from './OtravoTextField';
 import EmailField from './EmailField';
 import NumberField from './NumberField';
+import Keys from "@hotels/translation-keys";
+import Translate, {translate} from "@hotels/translation";
+import PropTypes from "prop-types";
+
 
 export interface RoomProps {
   roomNumber: number; 
@@ -43,7 +47,7 @@ interface PhoneValidation {
 }
 
 
-const Room: FunctionComponent<RoomProps> = props => {
+const Room: FunctionComponent<RoomProps> = (props, context) => {
 
   const [guest, setGuest] = useState<GuestState>({
     guest: props.guest,
@@ -134,12 +138,12 @@ const Room: FunctionComponent<RoomProps> = props => {
 
   return <Grid container spacing={2} >
     <Grid item xs={12}>
-      <Typography variant="h1">Habitación {props.roomNumber}</Typography>
+      <Typography variant="h1"><Translate tkey={Keys.common.room}/> {props.roomNumber}</Typography>
     </Grid>
     <Grid item xs={12} sm={6} md={4}>
       <OtravoTextField
         id="name"
-        label="Nombre"
+        label={translate(context,Keys.checkout.firstname)}
         value={props.guest.name}
         required={true}
         onChange={onChangeName}
@@ -149,7 +153,7 @@ const Room: FunctionComponent<RoomProps> = props => {
     <Grid item xs={12} sm={6} md={4}>
       <OtravoTextField
         id="lastName"
-        label="Apellido"
+        label={translate(context,Keys.checkout.lastname)}
         value={props.guest.lastName}
         required={true}
         onChange={onChangeLastName}
@@ -162,7 +166,7 @@ const Room: FunctionComponent<RoomProps> = props => {
     <Grid item xs={8} sm={4} md={2}>
       <NumberField
         id="phoneCountry"
-        label="Código País"
+        label={translate(context, Keys.checkout.phone_country_code)}
         value = {props.guest.phone.countryCode}
         required={true}
         onChange={onChangeCountryCode}
@@ -172,7 +176,7 @@ const Room: FunctionComponent<RoomProps> = props => {
     <Grid item xs={4} sm={3} md={2}>
       <NumberField
         id="phoneArea"
-        label="Código Area"
+        label={translate(context,Keys.checkout.phone_area_code)}
         value = {props.guest.phone.areaCode}
         required={true}
         onChange={onChangeAreaCode}
@@ -182,7 +186,7 @@ const Room: FunctionComponent<RoomProps> = props => {
     <Grid item xs={12} sm={5} md={4}>
       <NumberField
         id="phoneNumber"
-        label="Nro. Teléfono"
+        label={translate(context, Keys.checkout.phone_number)}
         value = {props.guest.phone.number}
         required={true}
         onChange={onChangePhoneNumber}
@@ -195,7 +199,7 @@ const Room: FunctionComponent<RoomProps> = props => {
     <Grid item xs={12} sm={12} md={6} lg={4}>
       <EmailField
         id="email"
-        label="Email"
+        label={translate(context, Keys.checkout.email)}
         value = {props.guest.email}
         required={true}
         onChange={onChangeEmail}
@@ -204,5 +208,7 @@ const Room: FunctionComponent<RoomProps> = props => {
     </Grid>
   </Grid>;
 }
+
+Room.contextTypes = { t: PropTypes.func };
 
 export default Room;
