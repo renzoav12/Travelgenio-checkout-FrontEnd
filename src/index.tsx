@@ -7,64 +7,9 @@ import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Header, { initialData as headerInitialData, countries, currencies } from '@hotels/header';
 import Footer, { initialData as footerInitialData, subscribeEmail } from '@hotels/footer';
+import { travelgenioTheme } from "@hotels/styles";
 
-const theme = createMuiTheme({
-  palette: {
-    primary: {
-        main: "#1D54C1",
-        dark: ' #0B3994',
-        contrastText: "#FFFFFF",
-    },
-    background: {
-      default: "#E5E5E5"
-    },
-    text: {
-      primary: "#3D4355"
-    },
-    divider: "#C0C6D1"
-  },
-  typography: {
-    fontFamily: "Open Sans",
-    fontSize: 14,
-    h1: {
-      fontSize: 18,
-      fontWeight: "bold"
-    },
-    h2: {
-      fontSize: 16,
-      fontWeight: 600
-    }
-  },
-  overrides: {
-    MuiPaper: {
-      root: {
-        padding: 20,
-        borderStyle: "solid",
-        border: "1px",
-        borderColor: "#C0C6D1"
-      },
-      elevation1: {
-        boxShadow: "none"
-      }
-    },
-    MuiButton: {
-      root: {
-        fontWeight: 600,
-        fontSize: 18,
-        textTransform: "none"
-      },
-      contained: {
-        boxShadow: "none"
-      }
-    },
-    MuiInputLabel: {
-      formControl: {
-        transform: 'translate(0, 18px) scale(1)'
-      }
-    }
-    
-  }
-})
+const theme = createMuiTheme(travelgenioTheme);
 
 function App() {
   return (
