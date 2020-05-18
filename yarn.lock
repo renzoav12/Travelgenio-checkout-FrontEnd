@@ -1200,6 +1200,13 @@
   dependencies:
     typescript "~3.7.2"
 
+"@hotels/translation@0.0.6":
+  version "0.0.6"
+  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@hotels/translation/-/translation-0.0.6.tgz#2112bc8685c2289a34dd981e1826a49cf0abf907"
+  integrity sha512-2iqtyeWabLwVZHLRvFJKs/hPb6GFgkGBS7GxeqdgAu7H4DyrwNjuudeZ7RnlsVsYFkrc6p6y8YUzSwymoQFznA==
+  dependencies:
+    change-case "^4.1.1"
+
 "@jest/console@^24.7.1", "@jest/console@^24.9.0":
   version "24.9.0"
   resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@jest/console/-/console-24.9.0.tgz#79b1bc06fb74a8cfb01cbdedf945584b1b9707f0"
