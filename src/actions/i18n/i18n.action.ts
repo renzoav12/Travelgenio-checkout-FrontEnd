@@ -17,7 +17,7 @@ export const loadI18n = () : ThunkAction<any, IreduxI18nState, any, any> => asyn
 
 const resolveTranslations = async () => {
   const axiosInstance = axios.create({
-    baseURL: config.I18N_API
+    baseURL: config.TRANSLATION_API
   });
   let translations: ITranslations = {};
   const key = "translations";
