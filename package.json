@@ -10,6 +10,7 @@
     "@hotels/occupancy":"0.0.4",
     "@hotels/translation-keys": "^0.0.1",
     "@hotels/translation": "0.0.5",
+    "@hotels/styles": "0.0.1",
     "@material-ui/core": "4.9.0",
     "@material-ui/icons": "4.5.1",
     "@types/lodash": "4.14.149",
