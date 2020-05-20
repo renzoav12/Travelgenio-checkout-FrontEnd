@@ -2,7 +2,7 @@ import React, { FunctionComponent } from 'react';
 import { Grid, Typography, Box } from '@material-ui/core';
 import Paper from '@material-ui/core/Paper';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
-import Category from '../../Category/Category';
+import Category from '@hotels/category';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 import KingBedIcon from '@material-ui/icons/KingBed';
 import TodayIcon from '@material-ui/icons/Today';
