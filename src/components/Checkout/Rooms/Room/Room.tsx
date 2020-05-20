@@ -192,7 +192,7 @@ const Room: FunctionComponent<RoomProps> = (props, context) => {
         value = {props.guest.phone.number}
         required={true}
         onChange={onChangePhoneNumber}
-        maxLength={30}
+        maxLength={15}
         minLength={7}
       />
     </Grid>
