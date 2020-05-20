@@ -147,7 +147,7 @@ const Room: FunctionComponent<RoomProps> = (props, context) => {
         value={props.guest.name}
         required={true}
         onChange={onChangeName}
-        maxLength={30}
+        maxLength={50}
       />
     </Grid>
     <Grid item xs={12} sm={6} md={4}>
@@ -157,7 +157,7 @@ const Room: FunctionComponent<RoomProps> = (props, context) => {
         value={props.guest.lastName}
         required={true}
         onChange={onChangeLastName}
-        maxLength={30}
+        maxLength={50}
       />
     </Grid>
     <Hidden smDown>
@@ -171,6 +171,7 @@ const Room: FunctionComponent<RoomProps> = (props, context) => {
         required={true}
         onChange={onChangeCountryCode}
         maxLength={5}
+        minLength={1}
       />
     </Grid>
     <Grid item xs={4} sm={3} md={2}>
@@ -180,7 +181,8 @@ const Room: FunctionComponent<RoomProps> = (props, context) => {
         value = {props.guest.phone.areaCode}
         required={true}
         onChange={onChangeAreaCode}
-        maxLength={10}
+        maxLength={5}
+        minLength={1}
       />
     </Grid>
     <Grid item xs={12} sm={5} md={4}>
@@ -190,7 +192,8 @@ const Room: FunctionComponent<RoomProps> = (props, context) => {
         value = {props.guest.phone.number}
         required={true}
         onChange={onChangePhoneNumber}
-        maxLength={20}
+        maxLength={30}
+        minLength={7}
       />
     </Grid>
     <Hidden smDown>
@@ -203,7 +206,7 @@ const Room: FunctionComponent<RoomProps> = (props, context) => {
         value = {props.guest.email}
         required={true}
         onChange={onChangeEmail}
-        maxLength={50}
+        maxLength={100}
       />
     </Grid>
   </Grid>;
