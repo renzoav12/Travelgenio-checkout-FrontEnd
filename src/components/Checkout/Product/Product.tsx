@@ -22,7 +22,7 @@ export interface ProductProps {
   pay: PayProps;
   breakdown: Breakdown;
   stay: Stay;
-  mealPlan: MealPlanProps;
+  mealPlan?: MealPlanProps | undefined;
   cancelPolicy: string;
   room: Room;
   rooms: Array<RoomOccupancies>;

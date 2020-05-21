@@ -1183,10 +1183,10 @@
   resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@hotels/header/-/header-0.0.4.tgz#4ee55e522f443b3f5ecb8aafb08ab78f8be52f2c"
   integrity sha512-AqzaQZ5jLCDfWLOlq3jcYKlyquRxZVj18XYhUJ496h6Llk58QxjuMApQECvkGKhy+JXI+B7ejGLVUBGG0hDHpw==
 
-"@hotels/mealplan@0.0.3":
-  version "0.0.3"
-  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@hotels/mealplan/-/mealplan-0.0.3.tgz#166f14f2c549dfdca582590ad0870988a44b47af"
-  integrity sha512-JWd8aGyckWysQqUsgd3J5rklq05e+Am4p84civ6z0dWrVsDVrUUa2PvSmDiuNOFqlFRWmK6R0v0RvZlVWMBUdg==
+"@hotels/mealplan@0.0.4":
+  version "0.0.4"
+  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@hotels/mealplan/-/mealplan-0.0.4.tgz#ca08993bcceaec542fa2a80c6562479e29d76404"
+  integrity sha512-0yiUvpjykOetAD3JkR+CDYOQ0eTivKPpGwIdobJfF4UFztYYMBztNibmJcQ53UCEWNiFVSDimeTZXhAsz2Pr+A==
 
 "@hotels/occupancy@0.0.4":
   version "0.0.4"
@@ -1200,8 +1200,8 @@
 
 "@hotels/translation-keys@^0.0.1":
   version "0.0.1"
-  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@hotels/translation-keys/-/translation-keys-0.0.1.tgz#4117134d95065e5d874b4fd47dd0fb4a46006610"
-  integrity sha512-iPE/nN3dpQWJLVq+xLy1obTYXMB7KOYvgQaNMSy8vIEyznJJzP6hahPMFqd6n8fr2uL2c4/PEmjN5oNXLTqMVw==
+  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@hotels/translation-keys/-/translation-keys-0.0.1.tgz#2a3b24bffe742c248d7bae8874c39cd84ec3b00c"
+  integrity sha512-MXO677kVm6jgsWJIskYApO8Xrddz5kFcFjSUDjqMVsRAYsbIFVx7/QamzxXUCUlOcv7SKI7m3yedR8ynLkVakw==
 
 "@hotels/translation@0.0.6":
   version "0.0.6"
