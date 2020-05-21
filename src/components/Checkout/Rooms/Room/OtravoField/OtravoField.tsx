@@ -10,10 +10,10 @@ export interface OtravoFieldProps {
   value?: string;
   required?: boolean;
   maxLength?: number;
+  minLength?: number;
   error?: boolean;
   errorMessage?: string;
   onChange: (value:string, valid:boolean) => void;
-  minLength?: number;
 }
 
 export interface OtravoFieldState {
