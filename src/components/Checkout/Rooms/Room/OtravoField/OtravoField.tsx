@@ -10,6 +10,7 @@ export interface OtravoFieldProps {
   value?: string;
   required?: boolean;
   maxLength?: number;
+  minLength?: number;
   error?: boolean;
   errorMessage?: string;
   onChange: (value:string, valid:boolean) => void;
@@ -82,7 +83,8 @@ class OtravoField extends Component<OtravoFieldProps, OtravoFieldState>  {
 
   render = () => {
     const inputProps = {
-      maxLength: this.props.maxLength
+      maxLength: this.props.maxLength,
+      minLength: this.props.minLength
     };
 
     return <TextField
