@@ -147,7 +147,8 @@ const Room: FunctionComponent<RoomProps> = (props, context) => {
         value={props.guest.name}
         required={true}
         onChange={onChangeName}
-        maxLength={50}
+        maxLength={100}
+        minLength={1}
       />
     </Grid>
     <Grid item xs={12} sm={6} md={4}>
@@ -157,7 +158,8 @@ const Room: FunctionComponent<RoomProps> = (props, context) => {
         value={props.guest.lastName}
         required={true}
         onChange={onChangeLastName}
-        maxLength={50}
+        maxLength={100}
+        minLength={1}
       />
     </Grid>
     <Hidden smDown>
