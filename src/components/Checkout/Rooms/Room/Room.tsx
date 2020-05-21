@@ -209,6 +209,7 @@ const Room: FunctionComponent<RoomProps> = (props, context) => {
         required={true}
         onChange={onChangeEmail}
         maxLength={100}
+        minLength={1}
       />
     </Grid>
   </Grid>;
