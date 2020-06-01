@@ -58,7 +58,7 @@ export const productFetch = (action: (product: ProductProps) => void) => async (
             '/products/' + getState().checkout.productId,
             { 
                 params: {
-                    language: 'en'
+                    language: 'es-ES'
                 }
             }
         );
