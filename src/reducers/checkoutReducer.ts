@@ -15,6 +15,7 @@ import {
   PRODUCT_UPDATE,
   PRODUCT_SEARCH
 } from '../actions/product/product.actionTypes';
+import { ProductProps } from '../components/Checkout/Product/Product';
 
 const initialState: Checkout = {
   loading: false,
@@ -145,7 +146,17 @@ const initialState: Checkout = {
         }
       ]
     },
-    roomsLoading: false
+    roomsLoading: false,
+    seller: {
+      brandId: "",
+      pointOfSaleId: "",
+      cobrandedCode: ""
+    },
+    search: {
+      country: "",
+      language: "",
+      occupancy: ""
+    }
   }
 };
 
@@ -174,10 +185,27 @@ export const checkoutReducer: Reducer<Checkout, RootAction> = (
     case PRODUCT_FETCH_SUCCESS:
       return { ...state, roomsLoading: false };
     case PRODUCT_UPDATE:
+
+      let product: ProductProps;
+
+      if(!action.product.seller || !action.product.seller.cobrandedCode) {
+         product = {
+          ...action.product,
+          seller: {
+            brandId: "",
+            pointOfSaleId: "",
+            cobrandedCode: "201",
+          }
+        };
+      } else {
+        product = action.product;
+      }
+    
       return {
         ...state,
-        product: action.product
+        product
       };
+      
     default:
       return state;
   }

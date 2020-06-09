@@ -59,7 +59,12 @@ export const guestsSave = () => async (
             '/products/' + getState().checkout.product.id + '/guests',
             getState().checkout.guests
         );
-        window.location.replace(config.CHECKOUT_TRAVELGENIO_PAGE + getState().checkout.productId);
+        
+        const locale = `${getState().checkout.product.search.language}-${getState().checkout.product.search.country}`;
+        const cobrandedCode = getState().checkout.product.seller.cobrandedCode;
+        const productId = getState().checkout.productId;
+
+        window.location.replace(`${config.CHECKOUT_TRAVELGENIO_PAGE}${locale}/${cobrandedCode}/${productId}`);
     } catch (e) {
         dispatch(guestsSaveFailed());
     }

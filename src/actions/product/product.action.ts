@@ -52,6 +52,7 @@ export const productFetch = (action: (product: ProductProps) => void) => async (
     dispatch,
     getState: () => RootState
 ) => {
+
     dispatch(productFetchStart());
     try {
         const response: AxiosResponse<ProductProps> = await product.get(

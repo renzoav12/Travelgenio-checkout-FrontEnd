@@ -16,8 +16,8 @@ interface CheckoutContainerProps extends CheckoutProps {
 const CheckoutContainer: FunctionComponent<CheckoutContainerProps> = props => {
 
   useEffect(() => {
-    props.onLoad(props.productId);
     props.loadI18n();
+    props.onLoad(props.productId);
   }, []);
 
   return <Container maxWidth="lg">
@@ -32,7 +32,6 @@ const mapStateToProps = (rootState: RootState, ownProps) => {
       loading: rootState.checkout.loading,
       roomsLoading: rootState.checkout.roomsLoading,
       productId: ownProps.match.params.productId,
-      
   };
 };
 
