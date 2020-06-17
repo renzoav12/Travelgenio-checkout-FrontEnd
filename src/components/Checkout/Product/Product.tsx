@@ -12,9 +12,8 @@ import Description from "./Description/Description";
 import ExtraCharges from './ExtraCharges/ExtraCharges';
 import Skeleton from 'react-loading-skeleton';
 import Keys from "@hotels/translation-keys";
-import Translation, {translate} from "@hotels/translation";
+import Translation from "@hotels/translation";
 import PropTypes from "prop-types";
-
 
 export interface ProductProps {
   id: string;
@@ -30,6 +29,8 @@ export interface ProductProps {
   occupancy: Occupancy;
   roomsLoading: boolean;
   extraCharges: ExtraCharges;
+  seller: Seller;
+  search: ProductSearch;
 }
 
 export interface Accommodation {
@@ -151,6 +152,18 @@ export interface ChargeType {
 
 export interface PayProps {
   price: Price;
+}
+
+export interface Seller {
+  brandId: string;
+  pointOfSaleId: string;
+  cobrandedCode: string;
+}
+
+export interface ProductSearch {
+  country: string;
+  language: string;
+  occupancy: string;
 }
 
 const useStyles = makeStyles((theme: Theme) =>

@@ -1,6 +1,12 @@
 import { Action } from "redux";
 import { ProductProps } from "../../components/Checkout/Product/Product";
 
+export interface Search {
+  country: string,
+  language: string,
+  occupancy: string,
+}
+
 export const PRODUCT_FETCH_START = 'PRODUCT_FETCH_START'
 export const PRODUCT_FETCH_SUCCESS = 'PRODUCT_FETCH_SUCCESS'
 export const PRODUCT_FETCH_FAILED = 'PRODUCT_FETCH_FAILED'
