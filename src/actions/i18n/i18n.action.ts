@@ -31,6 +31,7 @@ const resolveTranslations = async () => {
   let translations: ITranslations = {};
   const key = "translations";
   const storage = window.sessionStorage;
+  console.log(storage.getItem(key));
 
   if (storage.getItem(key)) {
     translations = JSON.parse(storage.getItem(key) || "");
