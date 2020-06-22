@@ -12,6 +12,7 @@ import { ThunkAction } from "redux-thunk";
 import { RootAction } from "../action";
 import product from "../../api/product/product";
 import { ProductProps } from "../../components/Checkout/Product/Product";
+import { getTranslations } from "../i18n/i18n.action";
 
 export type ThunkResult<R> = ThunkAction<R, RootState, undefined, RootAction>;
 
@@ -57,7 +58,7 @@ export const productFetch = (action: (product: ProductProps) => void) => async (
       "/products/" + getState().checkout.productId,
       {
         params: {
-          language: getState().i18nState.lang,
+          locale: Object.keys(getTranslations())[0],
         },
       }
     );

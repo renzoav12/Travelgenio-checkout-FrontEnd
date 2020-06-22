@@ -9,6 +9,8 @@ import config from "./../../config";
 import { ThunkAction } from "redux-thunk";
 import { OriginHostHeader } from "../../api/headers";
 
+export let currentLanguage;
+
 export const loadI18n = (): ThunkAction<
   any,
   IreduxI18nState,
@@ -21,6 +23,12 @@ export const loadI18n = (): ThunkAction<
   dispatch(setLanguage(Object.keys(translations)[0]));
 };
 
+export const getTranslations = () => {
+  const translations = window.sessionStorage.getItem("translations");
+
+  return translations ? JSON.parse(translations) : {};
+};
+
 const resolveTranslations = async () => {
   const axiosInstance = axios.create({
     baseURL: config.TRANSLATION_API,
@@ -31,7 +39,6 @@ const resolveTranslations = async () => {
   let translations: ITranslations = {};
   const key = "translations";
   const storage = window.sessionStorage;
-  console.log(storage.getItem(key));
 
   if (storage.getItem(key)) {
     translations = JSON.parse(storage.getItem(key) || "");
