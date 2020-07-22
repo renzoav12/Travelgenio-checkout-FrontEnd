@@ -118,12 +118,8 @@ const Room: FunctionComponent<RoomProps> = (props, context) => {
 
   const onChangePhoneNumber = (value: string, valid: boolean): void => {
       let prevGuest:GuestState = {...guest};
-      if (value.length < 7 || value.length > 15){
-        prevGuest.validation.phone.number = false;
-      }else{
-        prevGuest.validation.phone.number = valid;
-      }
 
+      prevGuest.validation.phone.number = valid;
       prevGuest.guest.phone.number = value;
 
       props.onChange(prevGuest.guest, isFormRoomValid(prevGuest.validation));      
