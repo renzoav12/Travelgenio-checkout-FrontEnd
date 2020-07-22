@@ -119,8 +119,8 @@ const Room: FunctionComponent<RoomProps> = (props, context) => {
   const onChangePhoneNumber = (value: string, valid: boolean): void => {
       let prevGuest:GuestState = {...guest};
 
-      prevGuest.validation.phone.number = valid;
       prevGuest.guest.phone.number = value;
+      prevGuest.validation.phone.number = valid;
 
       props.onChange(prevGuest.guest, isFormRoomValid(prevGuest.validation));      
 
