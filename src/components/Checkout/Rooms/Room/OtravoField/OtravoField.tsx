@@ -63,6 +63,8 @@ class OtravoField extends Component<OtravoFieldProps, OtravoFieldState>  {
     } else if(this.isInvalidFormat(value)) {
       errorMessage = translate(this.context,Keys.checkout.field_is_required);
       error = true;
+    }else if(this.validateMin(value) ||  this.validateMax(value)){
+      error = true;
     }
 
     this.setState({
@@ -71,6 +73,13 @@ class OtravoField extends Component<OtravoFieldProps, OtravoFieldState>  {
     });
 
     return !error;
+  }
+
+  validateMax = (value: string) => {
+      return this.props.maxLength ? (value.length > this.props.maxLength) :  false;
+  }
+  validateMin = (value: string) => {
+    return this.props.minLength ? (value.length < this.props.minLength) :  false;
   }
 
   isEmpty(value:string): boolean {
