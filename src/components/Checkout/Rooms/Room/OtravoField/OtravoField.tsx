@@ -9,8 +9,8 @@ export interface OtravoFieldProps {
   label: JSX.Element;
   value?: string;
   required?: boolean;
-  maxLength?: number;
-  minLength?: number;
+  maxLength: number;
+  minLength: number;
   error?: boolean;
   errorMessage?: string;
   onChange: (value:string, valid:boolean) => void;
@@ -62,6 +62,8 @@ class OtravoField extends Component<OtravoFieldProps, OtravoFieldState>  {
       error = true;
     } else if(this.isInvalidFormat(value)) {
       errorMessage = translate(this.context,Keys.checkout.field_is_required);
+      error = true;
+    }else if(value.length < this.props.minLength ||  value.length > this.props.maxLength){
       error = true;
     }
 
