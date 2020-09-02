@@ -1,7 +1,7 @@
 const dev = {
     PRODUCT_API: 'https://dev-hotels-shopping-product.travelagency.tech',
     CHECKOUT_API: 'https://dev-hotels-shopping-checkout.travelagency.tech',
-    CHECKOUT_TRAVELGENIO_PAGE: "http://develop-hotelssite.int.travelgenio.tech/checkout/hotels/payment/",
+    CHECKOUT_TRAVELGENIO_PAGE: "https://develop-hotelssite.int.travelgenio.tech/checkout/hotels/payment/",
     TRANSLATION_API: "https://dev-hotels-translation.travelagency.tech",
     COBRAND: "https://dev-hotels-translation.travelagency.tech/config",
     EMAIL_SUBSCRIPTION: "http://v24-hermes.int.travelgenio.tech"
