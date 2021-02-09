@@ -6,7 +6,7 @@
   "dependencies": {
     "@hotels/category": "0.0.1",
     "@hotels/mealplan": "0.0.5",
-    "@hotels/header-footer": "0.0.7",
+    "@hotels/header-footer": "0.0.8",
     "@hotels/occupancy":"0.0.4",
     "@hotels/translation-keys": "^0.0.1",
     "@hotels/translation": "0.0.6",

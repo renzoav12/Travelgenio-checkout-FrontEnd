@@ -1275,10 +1275,10 @@
   resolved "https://nexus-k8s.travelgenio.com/repository/travelgenio-npm/@hotels/category/-/category-0.0.1.tgz#eed780479334a4385b55e7f68ca62dcc7a131572"
   integrity sha512-5cHJxCdxTUYlb2vu37doZgMI/WVmtuIVs958xbeVXEsYPdTMBjfy7o5Yv1GtXhGCQkIi3BqumofFG25d233a/w==
 
-"@hotels/header-footer@0.0.7":
-  version "0.0.7"
-  resolved "https://nexus-k8s.travelgenio.com/repository/travelgenio-npm/@hotels/header-footer/-/header-footer-0.0.7.tgz#851490e9a893b70b6f2d64b7386ec0a878d8242e"
-  integrity sha512-de4U7f7IUchADincyaFobg+Q8d7P9lFAy32y+fa/mh+P5aeNg2GisA48JePUb15gugnFjni8iAThbVbBzwn5ag==
+"@hotels/header-footer@0.0.8":
+  version "0.0.8"
+  resolved "https://nexus-k8s.travelgenio.com/repository/travelgenio-npm/@hotels/header-footer/-/header-footer-0.0.8.tgz#2bc53aaa76d53dce1d91aef28e11a07989270979"
+  integrity sha512-J5a0KJgYZW+d+9atx/Pu6XIVrcPTdpzvxZd73EJ/wv2TiwpePYKcMdnKU4dXf57SXaa7zHlHm0uC1s2wYfzSFg==
 
 "@hotels/mealplan@0.0.5":
   version "0.0.5"
